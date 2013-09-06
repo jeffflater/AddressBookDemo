@@ -1,0 +1,7 @@
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\bin\Debug\AddressBook.Lib.Tests.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\bin\Debug\AddressBook.Lib.Tests.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\bin\Debug\nunit.framework.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\bin\Debug\nunit.framework.xml
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\obj\Debug\AddressBook.Lib.Tests.csprojResolveAssemblyReference.cache
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\obj\Debug\AddressBook.Lib.Tests.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib.Tests\obj\Debug\AddressBook.Lib.Tests.pdb
