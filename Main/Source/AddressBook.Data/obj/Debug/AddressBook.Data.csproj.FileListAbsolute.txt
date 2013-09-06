@@ -5,8 +5,8 @@ D:\Projects\AddressBook\AddressBook.Data\obj\Debug\AddressBook.Data.dll
 D:\Projects\AddressBook\AddressBook.Data\obj\Debug\AddressBook.Data.pdb
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Data.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Data.pdb
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.dll
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.pdb
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Model.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Model.pdb
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.csprojResolveAssemblyReference.cache
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.pdb
