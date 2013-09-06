@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites.ContactInfo
 {
-    public class Phone : ContactMethod
+    public abstract class ContactMethod : Entity
     {
-        public int Number { get; set; }
-        public Enum.Phone.PhoneType PhoneType { get; set; }
+        public bool IsPrimary { get; set; }
     }
 }

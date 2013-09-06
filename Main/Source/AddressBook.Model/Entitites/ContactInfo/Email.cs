@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites.ContactInfo
 {
-    public class Email : Entity
+    public class Email : ContactMethod
     {
         public string EmailAddress { get; set; }
-        public bool IsPrimary { get; set; }
     }
 }
