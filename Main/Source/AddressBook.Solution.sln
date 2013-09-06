@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Data", "AddressBook.Data\AddressBook.Data.csproj", "{4D4612C2-3FB9-4294-86E4-A04C126558E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Model", "AddressBook.Model\AddressBook.Model.csproj", "{4CEB7867-B6A4-4D2D-9156-0FDE5C5F4767}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Lib", "AddressBook.Lib\AddressBook.Lib.csproj", "{0E268219-BD12-467D-8E28-E0591472528D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D4612C2-3FB9-4294-86E4-A04C126558E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D4612C2-3FB9-4294-86E4-A04C126558E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D4612C2-3FB9-4294-86E4-A04C126558E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D4612C2-3FB9-4294-86E4-A04C126558E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CEB7867-B6A4-4D2D-9156-0FDE5C5F4767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CEB7867-B6A4-4D2D-9156-0FDE5C5F4767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CEB7867-B6A4-4D2D-9156-0FDE5C5F4767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CEB7867-B6A4-4D2D-9156-0FDE5C5F4767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E268219-BD12-467D-8E28-E0591472528D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E268219-BD12-467D-8E28-E0591472528D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E268219-BD12-467D-8E28-E0591472528D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E268219-BD12-467D-8E28-E0591472528D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
