@@ -5,11 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
+using log4net;
 
 namespace AddressBook.Lib.Extenstions
 {
     public static class SqlExtensions
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public static DataTable QueryDatabase(string sql)
         {
             using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
@@ -25,11 +29,11 @@ namespace AddressBook.Lib.Extenstions
                 }
                 catch (SqlException ex)
                 {
-                    //handle sql exception, possible syntax error
+                    log.Error(ex.Message, ex);
                 }
                 catch (Exception ex)
                 {
-                    //hanlde expection, possible db connection error
+                    log.Error(ex.Message, ex);
                 }
                 finally
                 {
