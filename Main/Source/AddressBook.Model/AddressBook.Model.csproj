@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,11 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entitites\ContactInfo\Email.cs" />
+    <Compile Include="Entitites\Location\Address.cs" />
+    <Compile Include="Entitites\Location\City.cs" />
+    <Compile Include="Entitites\Location\Country.cs" />
+    <Compile Include="Entitites\Entity.cs" />
+    <Compile Include="Entitites\People\Contact.cs" />
+    <Compile Include="Entitites\People\Person.cs" />
+    <Compile Include="Entitites\Location\State.cs" />
+    <Compile Include="Entitites\ContactInfo\Phone.cs" />
+    <Compile Include="Entitites\People\ContactRelationship.cs" />
+    <Compile Include="Enum\Person\EyeColor.cs" />
+    <Compile Include="Enum\Person\HairColor.cs" />
+    <Compile Include="Enum\Person\Sex.cs" />
+    <Compile Include="Enum\Phone\PhoneType.cs" />
+    <Compile Include="Enum\Contact\Relationship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entitites\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

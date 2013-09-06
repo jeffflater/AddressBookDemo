@@ -1,0 +1,5 @@
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.csprojResolveAssemblyReference.cache
