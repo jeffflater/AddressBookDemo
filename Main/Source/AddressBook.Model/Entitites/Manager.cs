@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites
 {
-    public class Manager : Abstract.Person
+    public class Manager : Abstract.Personnel
     {
+        public int SpendingLimit { get; set; }
     }
 }

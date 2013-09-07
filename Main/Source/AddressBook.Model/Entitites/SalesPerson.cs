@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites
 {
-    public class SalesPerson : Abstract.Person
+    public class SalesPerson : Abstract.Personnel
     {
+        public int WeeklySalesGoal { get; set; }
     }
 }
