@@ -10,3 +10,9 @@ D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Mod
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.csprojResolveAssemblyReference.cache
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\log4.config
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Lib.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Lib.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AutoMapper.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AutoMapper.Net4.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AutoMapper.xml

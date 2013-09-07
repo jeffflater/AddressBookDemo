@@ -8,19 +8,15 @@ namespace AddressBook.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> where T : class
     {
-        public virtual void Add(T entity) 
+        public virtual void Save(T entity) 
         { 
         }
 
-        public virtual void Update(T entity) 
+        public virtual void Delete(long Id) 
         { 
         }
 
-        public virtual void Delete(T entity) 
-        { 
-        }
-
-        public virtual T GetById(string id)
+        public virtual T GetById(long Id)
         {
             return null;
         }

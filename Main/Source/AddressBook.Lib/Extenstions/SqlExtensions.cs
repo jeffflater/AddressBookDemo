@@ -12,35 +12,47 @@ namespace AddressBook.Lib.Extenstions
 {
     public static class SqlExtensions
     {
-        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        public static DataTable QueryDatabase(string sql)
+        public static List<T> QueryTransaction<T>(string sql)
         {
-            using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.ConnectionString))
+            var result = new List<T>();
+            var connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            var command = new SqlCommand(sql, connection);
+
+            try
             {
-                SqlCommand command = new SqlCommand(sql, connection);
-                DataTable datatable = new DataTable();
+                connection.Open();
+                var reader = command.ExecuteReader();
+                result = AutoMapper.Mapper.DynamicMap<IDataReader, List<T>>(reader);
+            }
+            catch (Exception ex)
+            {
+                //TODO: log exception
+            }
+            finally
+            {
+                connection.Close();
+            }
+            
+            return result;
+        }
 
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    datatable.Load(reader);
-                }
-                catch (SqlException ex)
-                {
-                    log.Error(ex.Message, ex);
-                }
-                catch (Exception ex)
-                {
-                    log.Error(ex.Message, ex);
-                }
-                finally
-                {
-                    connection.Close();
-                }
+        public static void CommitTransaction(string sql)
+        {
+            var connection = new SqlConnection(Properties.Settings.Default.ConnectionString);
+            var command = new SqlCommand(sql, connection);
 
-                return datatable;
+            try
+            {
+                connection.Open();
+                var result = command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                //TODO: log exception
+            }
+            finally
+            {
+                connection.Close();
             }
         }
     }
