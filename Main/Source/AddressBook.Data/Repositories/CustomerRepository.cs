@@ -10,18 +10,14 @@ namespace AddressBook.Data.Repositories
 {
     public class CustomerRepository : Infrastructure.RepositoryBase<Model.Entitites.Customer>, Contracts.ICustomerRepository
     {
-        public override Model.Entitites.Customer GetById(long Id)
+        public Model.Entitites.Customer GetById(long Id)
         {
-            var sql = string.Format("SELECT * FROM dbo.vwCustomers WHERE Id = ", Id.ToString());
-            var query = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Customer>(sql);
-            return query.FirstOrDefault();
+            return base.GetById(Id, Model.Enum.PersonType.Customer);
         }
 
-        public override IEnumerable<Model.Entitites.Customer> GetAll()
+        public IEnumerable<Model.Entitites.Customer> GetAll()
         {
-            var sql = "SELECT * FROM dbo.vwCustomers";
-            var query = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Customer>(sql);
-            return query;
+            return base.GetAll(Model.Enum.PersonType.Customer);
         }
 
         public override void Save(Model.Entitites.Customer entity)

@@ -1,0 +1,46 @@
+﻿<script>
+    function fnSaveNewPerson() {
+        $('#personModal').modal('hide');
+        fnFireAppMessage('New person has been created/modified.');
+    }
+</script>
+
+<div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="personModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">New Person</h4>
+    </div>
+    <div class="modal-body">
+        <form role="form">
+            <div class="form-group">
+                <label for="tbFirstName">First Name</label>
+                <input type="text" class="form-control" id="tbFirstName" placeholder="First Name" class="input-sm">
+            </div>
+            <div class="form-group">
+                <label for="tbLastName">Last Name</label>
+                <input type="text" class="form-control" id="tbLastName" placeholder="Last Name" class="input-sm">
+            </div>
+            <div class="form-group">
+                <label for="tbDateOfBirth">Date of Birth</label>
+                <input type="date" class="form-control" id="tbDateOfBirth" placeholder="Last Name" class="input-sm">
+            </div>
+            <div class="form-group">
+                <label for="dlPersonType">Person Type</label>
+                <select class="form-control" id="dlPersonType" class="input-sm">
+                    <option value="1">Customer</option>
+                    <option value="2">Employee</option>
+                    <option value="3">Manager</option>
+                    <option value="4">Sales Person</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="fnSaveNewPerson();">Save changes</button>
+    </div>
+    </div>
+</div>
+</div>

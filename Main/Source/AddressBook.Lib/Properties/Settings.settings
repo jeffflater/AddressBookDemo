@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=(local);Initial Catalog=dbAddressBookDemo;Integrated Security=true</Value>
+      <Value Profile="(Default)">Data Source=JEFF-LAPTOP\SQLEXPRESS;Initial Catalog=dbAddressBookDemo;Integrated Security=true</Value>
     </Setting>
   </Settings>
 </SettingsFile>

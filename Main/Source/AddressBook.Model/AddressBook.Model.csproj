@@ -46,7 +46,10 @@
     <Compile Include="Entitites\Customer.cs" />
     <Compile Include="Entitites\Employee.cs" />
     <Compile Include="Entitites\Manager.cs" />
+    <Compile Include="Entitites\People.cs" />
+    <Compile Include="Entitites\Relationship.cs" />
     <Compile Include="Entitites\SalesPerson.cs" />
+    <Compile Include="Enum\PersonType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

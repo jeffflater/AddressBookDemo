@@ -8,18 +8,14 @@ namespace AddressBook.Data.Repositories
 {
     public class ManagerRepository : Infrastructure.RepositoryBase<Model.Entitites.Manager>, Contracts.IManagerRepository
     {
-        public override Model.Entitites.Manager GetById(long Id)
+        public Model.Entitites.Manager GetById(long Id)
         {
-            var sql = string.Format("SELECT * FROM dbo.vwManagers WHERE Id = ", Id.ToString());
-            var query = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Manager>(sql);
-            return query.FirstOrDefault();
+            return base.GetById(Id, Model.Enum.PersonType.Manager);
         }
 
-        public override IEnumerable<Model.Entitites.Manager> GetAll()
+        public IEnumerable<Model.Entitites.Manager> GetAll()
         {
-            var sql = "SELECT * FROM dbo.vwManagers";
-            var query = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Manager>(sql);
-            return query;
+            return base.GetAll(Model.Enum.PersonType.Manager);
         }
 
         public override void Save(Model.Entitites.Manager entity)

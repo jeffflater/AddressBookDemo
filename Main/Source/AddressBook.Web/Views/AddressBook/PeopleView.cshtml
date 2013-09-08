@@ -1,0 +1,106 @@
+﻿@model IEnumerable<AddressBook.Model.Entitites.People>
+
+@{
+    Layout = null;
+}
+
+<script>
+    head.ready(function () {
+        $(function () {
+
+            $.ajax({
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#peopleAjaxLoader').html('<img src="/images/ajax-loader.gif">');
+                },
+                url: "/api/people",
+                "sAjaxDataProp": "data.inner",
+                success: function (json) {
+                    oTable = $('#peopleView').dataTable({
+                        "aaData": json,
+                        "bProcessing": false,
+                        "bServerSide": false,
+                        "bAutoWidth": true,
+                        "bFilter": true,
+                        "bInfo": false,
+                        "bSearchable": false,
+                        "bPaginate": true,
+                        "bSortCellsTop": true,
+                        "bDestroy": true,
+                        "oLanguage": {
+                            "sEmptyTable": "No data available."
+                        },
+                        "aoColumns": [
+                                { "mData": "Id" },
+                                { "mData": "FullName" },
+                                { "mData": "PersonType" }
+                                
+                        ],
+                        "fnRowCallback": function (nRow, aData, iDisplayIndex) {
+                            var personType;
+                            switch (aData.PersonType) {
+                                case 1:
+                                    personType = 'Customer';
+                                    break;
+                                case 2:
+                                    personType = 'Employee';
+                                    break;
+                                case 3:
+                                    personType = 'Manager';
+                                    break;
+                                case 4:
+                                    personType = 'SalesPerson';
+                                    break;
+                            }
+                            $('td:eq(2)', nRow).html(personType);
+				            return nRow;
+				        },
+                        "aoColumnDefs": [
+                                { "sTitle": "ID", "aTargets": [0] },
+                                { "sTitle": "Full Name", "aTargets": [1] },
+                                { "sTitle": "Person Type", "aTargets": [2] }
+                        ]
+                    });
+                    $('input[type=text]').addClass('form-control input-sm');
+                    $('select').addClass('form-control input-sm');
+                    $('#peopleAjaxLoader').html('');
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $('#peopleAjaxLoader').html('');
+                }
+            });
+
+            $("#peopleView tbody").click(function (event) {
+                var trNode = $(event.target).parents('tr')[0];
+                var aData = oTable.fnGetData(trNode);
+
+                fnGetPersonView(aData.Id, aData.PersonType);
+
+            });
+
+        });
+    });
+</script>
+
+<div id="peopleAjaxLoader"></div>
+
+<table id="peopleView" class="table table-striped table-bordered table-hover table-condensed">
+	<thead>
+		<tr>
+            <th>Id</th>
+            <th>FullName</th>
+            <th>PersonType</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+ 
+<!-- Button trigger modal -->
+<a data-toggle="modal" href="#personModal" class="btn btn-default pull-right">New Person</a>
+
+@{
+    Html.RenderPartial("AddEditPersonView");
+}

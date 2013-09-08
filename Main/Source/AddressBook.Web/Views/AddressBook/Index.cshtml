@@ -1,0 +1,30 @@
+﻿<script>
+    function fnFireAppMessage(msg) {
+        $('#appMessage').html(msg);
+    }
+</script>
+
+<div class="alert alert-info" id="appMessage">Please continue by choosing a person from the right hand grid. </div>
+
+<div class="row">
+  <div class="col-xs-5 col-md-5">
+    @{
+        Html.RenderAction("PersonDetail");
+    }
+  </div>
+  <div class="col-xs-6 col-md-4">
+    @{
+        Html.RenderAction("PeopleList");
+    }
+  </div>
+  <div class="col-xs-5 col-md-5">
+    @{
+        Html.RenderAction("RelationshipList");
+    }
+  </div>
+</div>
+
+@{
+    Html.RenderPartial("AddEditPersonView");
+}
+

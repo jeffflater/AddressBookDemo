@@ -25,7 +25,8 @@ namespace AddressBook.Lib.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local);Initial Catalog=dbAddressBookDemo;Integrated Security=true")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JEFF-LAPTOP\\SQLEXPRESS;Initial Catalog=dbAddressBookDemo;Integrated S" +
+            "ecurity=true")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

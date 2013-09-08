@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AddressBook.Model.Entitites.Relationship>
+
+<script>
+    function fnTestAlert() {
+        $('#deleteRelationshipModal').modal('show');
+
+    }
+</script>
+
+<input id="btnDelete" type="button" value="Delete" class="btn btn-default" onclick="fnTestAlert();" />
+<a data-toggle="modal" href="#personModal" class="btn btn-default pull-right">Edit</a>
+
+<div class="modal fade" id="deleteRelationshipModal" tabindex="-1" role="dialog" aria-labelledby="deleteRelationshipModal" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Are you sure!</h4>
+    </div>
+    <div class="modal-body">
+      are you sure you want to remove relationship from person!
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="fnSaveNewPerson();">Save changes</button>
+    </div>
+    </div>
+</div>
+</div>

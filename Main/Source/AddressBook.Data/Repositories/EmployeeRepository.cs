@@ -8,18 +8,14 @@ namespace AddressBook.Data.Repositories
 {
     public class EmployeeRepository : Infrastructure.RepositoryBase<Model.Entitites.Employee>, Contracts.IEmployeeRepository
     {
-        public override Model.Entitites.Employee GetById(long Id)
+        public Model.Entitites.Employee GetById(long Id)
         {
-            var sql = string.Format("SELECT * FROM dbo.vwEmployees WHERE Id = ", Id.ToString());
-            var query = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Employee>(sql);
-            return query.FirstOrDefault();
+            return base.GetById(Id, Model.Enum.PersonType.Employee);
         }
 
-        public override IEnumerable<Model.Entitites.Employee> GetAll()
+        public IEnumerable<Model.Entitites.Employee> GetAll()
         {
-            var sql = "SELECT * FROM dbo.vwEmployees";
-            var query = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Employee>(sql);
-            return query;
+            return base.GetAll(Model.Enum.PersonType.Employee);
         }
 
         public override void Save(Model.Entitites.Employee entity)
