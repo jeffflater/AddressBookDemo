@@ -9,11 +9,17 @@ namespace AddressBook.Web.Controllers
 {
     public class SalesPersonController : ApiController
     {
+        Data.Repositories.SalesPersonRepository repository = new Data.Repositories.SalesPersonRepository();
+
         public Model.Entitites.SalesPerson Get(long Id)
         {
-            var repository = new Data.Repositories.SalesPersonRepository();
             var salesPerson = repository.GetById(Id);
             return salesPerson;
+        }
+
+        public void Post(Model.Entitites.SalesPerson salesPerson)
+        {
+            repository.Save(salesPerson);
         }
     }
 }

@@ -9,9 +9,10 @@ namespace AddressBook.Web.Controllers
 {
     public class PeopleController : ApiController
     {
+        private static Data.Repositories.PeopleRepository repository = new Data.Repositories.PeopleRepository();
+
         public IEnumerable<Model.Entitites.People> Get()
         {
-            var repository = new Data.Repositories.PeopleRepository();
             var people = repository.GetAll();
             return people;
         }

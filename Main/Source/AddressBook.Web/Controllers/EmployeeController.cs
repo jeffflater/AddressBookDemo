@@ -9,11 +9,17 @@ namespace AddressBook.Web.Controllers
 {
     public class EmployeeController : ApiController
     {
+        private static Data.Repositories.EmployeeRepository repository = new Data.Repositories.EmployeeRepository();
+
         public Model.Entitites.Employee Get(long Id)
         {
-            var repository = new Data.Repositories.EmployeeRepository();
             var employee = repository.GetById(Id);
             return employee;
+        }
+
+        public void Post(Model.Entitites.Employee employee)
+        {
+            repository.Save(employee);
         }
     }
 }
