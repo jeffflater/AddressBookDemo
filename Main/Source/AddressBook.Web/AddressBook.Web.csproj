@@ -290,6 +290,7 @@
     <Content Include="Views\AddressBook\PeopleView.cshtml" />
     <Content Include="Views\AddressBook\RelationshipView.cshtml" />
     <Content Include="Views\AddressBook\PersonView.cshtml" />
+    <Content Include="Views\AddressBook\AddEditPersonView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
