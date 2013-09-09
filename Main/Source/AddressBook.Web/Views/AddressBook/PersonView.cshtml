@@ -2,93 +2,85 @@
     Layout = null;
 }
 <script>
-    function fnGetPersonView(id, personType) {
-
-        var url;
+    function RenderPersonView(id, personType) {
+      
         switch (personType) {
             case 1:
-                url = "/api/customer/" + id;
+                var customerController = new CustomerController();
+                customerController.Get(id, function (data) {
+                    RenderPersonDetailView(data, personType);
+                });
                 break;
             case 2:
-                url = "/api/employee/" + id;
+                var employeeController = new EmployeeController();
+                employeeController.Get(id, function (data) {
+                    RenderPersonDetailView(data, personType);
+                });
                 break;
             case 3:
-                url = "/api/manager/" + id;
+                var managerController = new ManagerController();
+                managerController.Get(id, function (data) {
+                    RenderPersonDetailView(data, personType);
+                });
                 break;
             case 4:
-                url = "/api/salesperson/" + id;
+                var salesPersonController = new SalesPersonController();
+                salesPersonController.Get(id, function (data) {
+                    RenderPersonDetailView(data, personType);
+                });
                 break;
         }
-
-        $.ajax({
-            type: 'GET',
-            contentType: 'application/json',
-            dataType: 'json',
-            beforeSend: function () {
-                $('#personAjaxLoader').html('<img src="/images/ajax-loader.gif">');
-            },
-            url: url,
-            "sAjaxDataProp": "data.inner",
-            success: function (json) {
-
-                fnFireAppMessage(json.FullName+" has been selected.");
- 
-                $('#tbFirstName').val(json.FirstName);
-                $('#tbLastName').val(json.LastName);
-                $('#tbDateOfBirth').val(json.DateOfBirth);
-
-                fnGetPersonDetails(json, personType);
-
-                $('#personAjaxLoader').html('');
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                $('#personAjaxLoader').html('');
-            }
-        });
-
     }
 
-    function fnGetPersonDetails(json, personType) {
+    function RenderPersonDetailView(data, personType)
+    {
+        debugger;
+        fnFireAppMessage(data.FullName + " has been selected.");
+
+        $('#tbFirstName').val(data.FirstName);
+        $('#tbLastName').val(data.LastName);
+        $('#tbDateOfBirth').val(data.DateOfBirth);
+
         var details = '';
         switch (personType) {
             case 1:
-                details += 'Gender: ' + json.Gender + "<br>";
-                details += 'Age: ' + json.Age + "<br>";
-                details += 'Race: ' + json.Race + "<br>";
-                details += 'Education: ' + json.Education + "<br>";
-                details += 'CreatedOn: ' + json.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + json.LastModifiedOn + "<br>";
+                details += 'Gender: ' + data.Gender + "<br>";
+                details += 'Age: ' + data.Age + "<br>";
+                details += 'Race: ' + data.Race + "<br>";
+                details += 'Education: ' + data.Education + "<br>";
+                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
                 break;
             case 2:
-                details += 'Department: ' + json.Department + "<br>";
-                details += 'Branch: ' + json.Branch + "<br>";
-                details += 'HireDate: ' + json.HireDate + "<br>";
-                details += 'ApprovedOvertime: ' + json.ApprovedOvertime + "<br>";
-                details += 'CreatedOn: ' + json.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + json.LastModifiedOn + "<br>";
+                details += 'Department: ' + data.Department + "<br>";
+                details += 'Branch: ' + data.Branch + "<br>";
+                details += 'HireDate: ' + data.HireDate + "<br>";
+                details += 'ApprovedOvertime: ' + data.ApprovedOvertime + "<br>";
+                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
                 break;
             case 3:
-                details += 'Department: ' + json.Department + "<br>";
-                details += 'Branch: ' + json.Branch + "<br>";
-                details += 'HireDate: ' + json.HireDate + "<br>";
-                details += 'SpendingLimit: ' + json.SpendingLimit + "<br>";
-                details += 'CreatedOn: ' + json.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + json.LastModifiedOn + "<br>";
+                details += 'Department: ' + data.Department + "<br>";
+                details += 'Branch: ' + data.Branch + "<br>";
+                details += 'HireDate: ' + data.HireDate + "<br>";
+                details += 'SpendingLimit: ' + data.SpendingLimit + "<br>";
+                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
                 break;
             case 4:
-                details += 'Department: ' + json.Department + "<br>";
-                details += 'Branch: ' + json.Branch + "<br>";
-                details += 'HireDate: ' + json.HireDate + "<br>";
-                details += 'WeeklySalesGoal: ' + json.WeeklySalesGoal + "<br>";
-                details += 'CreatedOn: ' + json.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + json.LastModifiedOn + "<br>";
+                details += 'Department: ' + data.Department + "<br>";
+                details += 'Branch: ' + data.Branch + "<br>";
+                details += 'HireDate: ' + data.HireDate + "<br>";
+                details += 'WeeklySalesGoal: ' + data.WeeklySalesGoal + "<br>";
+                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
                 break;
         }
+
         $('#additionalDetails').html(details);
     }
-</script>
 
-<div id="personAjaxLoader"></div>
+</script>
 
 <form role="form">
     <div class="form-group">
