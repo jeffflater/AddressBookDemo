@@ -35,6 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -57,7 +64,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AddressBook.Data\AddressBook.Data.csproj">
+      <Project>{4d4612c2-3fb9-4294-86e4-a04c126558e8}</Project>
+      <Name>AddressBook.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AddressBook.Lib\AddressBook.Lib.csproj">
+      <Project>{0e268219-bd12-467d-8e28-e0591472528d}</Project>
+      <Name>AddressBook.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AddressBook.Model\AddressBook.Model.csproj">
+      <Project>{4ceb7867-b6a4-4d2d-9156-0fde5c5f4767}</Project>
+      <Name>AddressBook.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AddressBook.Web\AddressBook.Web.csproj">
+      <Project>{a3f17bb8-70ab-4013-ac4c-7de3dedfbc03}</Project>
+      <Name>AddressBook.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

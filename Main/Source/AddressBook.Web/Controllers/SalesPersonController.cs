@@ -13,8 +13,7 @@ namespace AddressBook.Web.Controllers
 
         public Model.Entitites.SalesPerson Get(long Id)
         {
-            var salesPerson = repository.GetById(Id);
-            return salesPerson;
+            return repository.GetById(Id);
         }
 
         public void Post(Model.Entitites.SalesPerson salesPerson)

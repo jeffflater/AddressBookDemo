@@ -43,11 +43,13 @@
     <Compile Include="Entitites\Abstract\Personnel.cs" />
     <Compile Include="Entitites\Abstract\Entity.cs" />
     <Compile Include="Entitites\Abstract\Person.cs" />
+    <Compile Include="Entitites\ChildRelationship.cs" />
+    <Compile Include="Entitites\RelationshipHierarchy.cs" />
     <Compile Include="Entitites\Customer.cs" />
     <Compile Include="Entitites\Employee.cs" />
     <Compile Include="Entitites\Manager.cs" />
     <Compile Include="Entitites\People.cs" />
-    <Compile Include="Entitites\Relationship.cs" />
+    <Compile Include="Entitites\ParentRelationship.cs" />
     <Compile Include="Entitites\SalesPerson.cs" />
     <Compile Include="Enum\PersonType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

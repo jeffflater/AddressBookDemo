@@ -13,8 +13,7 @@ namespace AddressBook.Web.Controllers
 
         public Model.Entitites.Manager Get(long Id)
         {
-            var manager = repository.GetById(Id);
-            return manager;
+            return repository.GetById(Id);
         }
 
         public void Post(Model.Entitites.Manager manager)

@@ -1,7 +1,7 @@
 ﻿<script>
-    function fnSaveNewPerson() {
+    function fnSavePerson() {
 
-        var personType = $('#cbPersonType').val();
+        var personType = parseInt($('#cbPersonType1').val());
         var person;
         var url;
 
@@ -9,9 +9,9 @@
             case 1:
                 url = '/api/customer';
                 person = new Customer(0,
-					                    $('#tbFirstName').val(),
-					                    $('#tbLastName').val(),
-					                    $('#tbDateOfBirth').val(),
+					                    $('#tbFirstName1').val(),
+					                    $('#tbLastName1').val(),
+					                    $('#tbDateOfBirth1').val(),
 					                    '',
 					                    0,
 					                    '',
@@ -20,9 +20,9 @@
             case 2:
                 url = '/api/employee';
                 person = new Employee(0,
-					                    $('#tbFirstName').val(),
-					                    $('#tbLastName').val(),
-					                    $('#tbDateOfBirth').val(),
+					                    $('#tbFirstName1').val(),
+					                    $('#tbLastName1').val(),
+					                    $('#tbDateOfBirth1').val(),
 					                    '',
 					                    '',
 					                    '',
@@ -32,9 +32,9 @@
             case 3:
                 url = '/api/manager';
                 person = new Manager(0,
-					                $('#tbFirstName').val(),
-					                $('#tbLastName').val(),
-					                $('#tbDateOfBirth').val(),
+					                $('#tbFirstName1').val(),
+					                $('#tbLastName1').val(),
+					                $('#tbDateOfBirth1').val(),
 					                '',
 					                '',
 					                '',
@@ -44,9 +44,9 @@
             case 4:
                 url = '/api/salesperson';
                 person = new SalesPerson(id,
-						                    $('#tbFirstName').val(),
-					                        $('#tbLastName').val(),
-					                        $('#tbDateOfBirth').val(),
+						                    $('#tbFirstName1').val(),
+					                        $('#tbLastName1').val(),
+					                        $('#tbDateOfBirth1').val(),
 						                    '',
 						                    '',
 						                    '',
@@ -64,6 +64,7 @@
             success: function (json) {
                 $('#personModal').modal('hide');
                 fnFireAppMessage('New person has been created/modified.');
+                fnGetPeople();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 debugger;
@@ -83,18 +84,18 @@
         <form role="form">
             <div class="form-group">
                 <label for="tbFirstName">First Name</label>
-                <input type="text" class="form-control" id="tbFirstName" placeholder="First Name" class="input-sm">
+                <input type="text" class="form-control" id="tbFirstName1" placeholder="First Name" class="input-sm">
             </div>
             <div class="form-group">
                 <label for="tbLastName">Last Name</label>
-                <input type="text" class="form-control" id="tbLastName" placeholder="Last Name" class="input-sm">
+                <input type="text" class="form-control" id="tbLastName1" placeholder="Last Name" class="input-sm">
             </div>
             <div class="form-group">
                 <label for="tbDateOfBirth">Date of Birth</label>
-                <input type="date" class="form-control" id="tbDateOfBirth" placeholder="Last Name" class="input-sm">
+                <input type="date" class="form-control" id="tbDateOfBirth1" placeholder="Date of Birth" class="input-sm">
             </div>
             <div class="form-group">
-                <label for="cbPersonType">Person Type</label>
+                <label for="cbPersonType1">Person Type</label>
                 <select class="form-control" id="cbPersonType" class="input-sm">
                     <option value="1">Customer</option>
                     <option value="2">Employee</option>
@@ -106,7 +107,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="fnSaveNewPerson();">Save changes</button>
+        <button type="button" class="btn btn-primary" onclick="fnSavePerson();">Save changes</button>
     </div>
     </div>
 </div>

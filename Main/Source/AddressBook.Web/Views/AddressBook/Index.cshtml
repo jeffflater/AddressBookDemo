@@ -9,23 +9,23 @@
 <table class="table">
     <tr>
         <td>@{
-        Html.RenderAction("PersonDetail");
+            Html.RenderAction("PersonPartialView");
         }
         </td>
         <td rowspan="2">@{
-        Html.RenderAction("PeopleList");
+            Html.RenderAction("PeoplePartialView");
         }
         </td>
     </tr>
     <tr>
         <td>@{
-        Html.RenderAction("RelationshipList");
+            Html.RenderAction("RelationshipPartialView");
         }
         </td>
     </tr>
 </table>
 
 @{
-    Html.RenderPartial("AddEditPersonView");
+    Html.RenderPartial("PersonPopUpView");
 }
 

@@ -16,20 +16,17 @@ namespace AddressBook.Web.Controllers
             return View();
         }
 
-        public ActionResult PeopleList()
+        public ActionResult PeoplePartialView()
         {
             return PartialView("PeopleView");
         }
 
-        public ActionResult RelationshipList()
+        public ActionResult RelationshipPartialView()
         {
-            var repository = new Data.Repositories.RelationshipRepository();
-            var relationships = repository.GetAll(1);
-
-            return PartialView("RelationshipView", relationships);
+            return PartialView("RelationshipView");
         }
 
-        public ActionResult PersonDetail()
+        public ActionResult PersonPartialView()
         {
             return PartialView("PersonView");
         }

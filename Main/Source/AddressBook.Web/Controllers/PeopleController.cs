@@ -13,8 +13,7 @@ namespace AddressBook.Web.Controllers
 
         public IEnumerable<Model.Entitites.People> Get()
         {
-            var people = repository.GetAll();
-            return people;
+            return repository.GetAll();
         }
     }
 }

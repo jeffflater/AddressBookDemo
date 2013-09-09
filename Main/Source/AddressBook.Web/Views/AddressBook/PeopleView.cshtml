@@ -8,6 +8,19 @@
     head.ready(function () {
         $(function () {
 
+            fnGetPeopleView();
+
+            $("#peopleView tbody").click(function (event) {
+                var trNode = $(event.target).parents('tr')[0];
+                var aData = oTable.fnGetData(trNode);
+
+                fnGetPersonView(aData.Id, aData.PersonType);
+
+            });
+
+        });
+
+        function fnGetPeopleView() {
             $.ajax({
                 type: 'GET',
                 contentType: 'application/json',
@@ -36,7 +49,7 @@
                                 { "mData": "Id" },
                                 { "mData": "FullName" },
                                 { "mData": "PersonType" }
-                                
+
                         ],
                         "fnRowCallback": function (nRow, aData, iDisplayIndex) {
                             var personType;
@@ -55,8 +68,8 @@
                                     break;
                             }
                             $('td:eq(2)', nRow).html(personType);
-				            return nRow;
-				        },
+                            return nRow;
+                        },
                         "aoColumnDefs": [
                                 { "sTitle": "ID", "aTargets": [0] },
                                 { "sTitle": "Full Name", "aTargets": [1] },
@@ -71,16 +84,7 @@
                     $('#peopleAjaxLoader').html('');
                 }
             });
-
-            $("#peopleView tbody").click(function (event) {
-                var trNode = $(event.target).parents('tr')[0];
-                var aData = oTable.fnGetData(trNode);
-
-                fnGetPersonView(aData.Id, aData.PersonType);
-
-            });
-
-        });
+        }
     });
 </script>
 

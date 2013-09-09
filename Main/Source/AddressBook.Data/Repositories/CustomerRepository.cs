@@ -28,7 +28,7 @@ namespace AddressBook.Data.Repositories
             {
                 //Generate SQL to create new record
                 sql.Append("INSERT INTO dbo.Customers (FirstName, LastName, DateOfBirth, Gender, Age, Race, Education, CreatedOn, LastModifiedOn, IsDeleted) ");
-                sql.Append(string.Format("VALUES ('{0}', '{1}', '{2}', '{3}', , '{4}', '{5}', GETDATE(), GETDATE(), 0)", entity.FirstName,
+                sql.Append(string.Format("VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', GETDATE(), GETDATE(), 0)", entity.FirstName,
                                                                                                                                 entity.LastName,
                                                                                                                                 entity.DateOfBirth.ToShortDateString(),
                                                                                                                                 entity.Gender,
