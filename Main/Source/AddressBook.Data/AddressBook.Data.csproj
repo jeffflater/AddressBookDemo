@@ -48,6 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Contracts\ICustomerDTO.cs" />
+    <Compile Include="DTO\Contracts\IEmployeeDTO.cs" />
+    <Compile Include="DTO\Contracts\IManagerDTO.cs" />
+    <Compile Include="DTO\Contracts\IPeopleDTO.cs" />
+    <Compile Include="DTO\Contracts\IRelationshipDTO.cs" />
+    <Compile Include="DTO\Contracts\ISalesPersonDTO.cs" />
+    <Compile Include="DTO\SalesPersonDTO.cs" />
+    <Compile Include="DTO\RelationshipDTO.cs" />
+    <Compile Include="DTO\PeopleDTO.cs" />
+    <Compile Include="DTO\ManagerDTO.cs" />
+    <Compile Include="DTO\EmployeeDTO.cs" />
+    <Compile Include="DTO\CustomerDTO.cs" />
+    <Compile Include="Infrastructure\IDTO.cs" />
+    <Compile Include="Infrastructure\DTOBase.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
