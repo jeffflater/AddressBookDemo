@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites.Relationship
 {
-    public class ChildRelationship
+    /// <summary>
+    /// ChildRelationship class : Inherits from abstract Entity class
+    /// </summary>
+    public class ChildRelationship : Abstract.Entity
     {
-        public long Id { get; set; }
         public Model.Enum.PersonType PersonType { get; set; }
 
-        public ChildRelationship()
-        {
-        }
-
+        /// <summary>
+        /// Constructor used to create a new instance of ChildRelationship
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="personType"></param>
         public ChildRelationship(long id, Model.Enum.PersonType personType)
         {
             Id = id;

@@ -8,18 +8,36 @@ using System.Data;
 
 namespace AddressBook.Data.Repositories
 {
+    /// <summary>
+    /// Customer Repository
+    /// </summary>
     public class CustomerRepository : Infrastructure.RepositoryBase<Model.Entitites.Customer>, Contracts.ICustomerRepository
     {
+        /// <summary>
+        /// Get Customer entity by Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Model.Entitites.Customer GetById(long Id)
         {
             return base.GetById(Id, Model.Enum.PersonType.Customer);
         }
 
+        /// <summary>
+        /// Get All Customer entities
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Model.Entitites.Customer> GetAll()
         {
             return base.GetAll(Model.Enum.PersonType.Customer);
         }
 
+        /// <summary>
+        /// Save Customer entity :
+        ///     If Customer.Id is zero a new Customer record will be created
+        ///     If Customer.Id is not zero an existing Customer record will be updated
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Save(Model.Entitites.Customer entity)
         {
             var sql = new StringBuilder();
@@ -55,6 +73,11 @@ namespace AddressBook.Data.Repositories
             Lib.Extenstions.SqlExtensions.CommitTransaction(sql.ToString());
         }
 
+        /// <summary>
+        /// Delete Customer entity by Id :
+        ///     The IsDeleted record is set to 1; records are not actually deleted from the database
+        /// </summary>
+        /// <param name="Id"></param>
         public override void Delete(long Id)
         {
             var sql = string.Format("UPDATE dbo.Customers SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE Id = {0}", Id.ToString());

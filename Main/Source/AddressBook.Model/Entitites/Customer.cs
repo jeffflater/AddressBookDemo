@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites
 {
+    /// <summary>
+    /// Customer class : Inherits from abstract Person class
+    /// </summary>
     public class Customer : Abstract.Person
     {
         public string Gender { get; set; }

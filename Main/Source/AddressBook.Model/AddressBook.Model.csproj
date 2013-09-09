@@ -44,6 +44,7 @@
     <Compile Include="Entitites\Abstract\Entity.cs" />
     <Compile Include="Entitites\Abstract\Person.cs" />
     <Compile Include="Entitites\Relationship\ChildRelationship.cs" />
+    <Compile Include="Entitites\Relationship\ParentChildRelationship.cs" />
     <Compile Include="Entitites\Relationship\RelationshipTree.cs" />
     <Compile Include="Entitites\Customer.cs" />
     <Compile Include="Entitites\Employee.cs" />

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Model.Entitites.Abstract
 {
+    /// <summary>
+    /// Abstract Entity class
+    /// </summary>
     public abstract class Entity
     {
         [Key]

@@ -6,18 +6,36 @@ using System.Threading.Tasks;
 
 namespace AddressBook.Data.Repositories
 {
+    /// <summary>
+    /// SalesPerson Repository
+    /// </summary>
     public class SalesPersonRepository : Infrastructure.RepositoryBase<Model.Entitites.SalesPerson>, Contracts.ISalesPersonRepository
     {
+        /// <summary>
+        /// Get SalesPerson entity by Id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         public Model.Entitites.SalesPerson GetById(long Id)
         {
             return base.GetById(Id, Model.Enum.PersonType.SalesPerson);
         }
 
+        /// <summary>
+        /// Get All SalesPerson entities
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Model.Entitites.SalesPerson> GetAll()
         {
             return base.GetAll(Model.Enum.PersonType.SalesPerson);
         }
 
+        /// <summary>
+        /// Save SalesPerson entity :
+        ///     If SalesPerson.Id is zero a new SalesPerson record will be created
+        ///     If SalesPerson.Id is not zero an existing SalesPerson record will be updated
+        /// </summary>
+        /// <param name="entity"></param>
         public override void Save(Model.Entitites.SalesPerson entity)
         {
             var sql = new StringBuilder();
@@ -55,6 +73,11 @@ namespace AddressBook.Data.Repositories
             Lib.Extenstions.SqlExtensions.CommitTransaction(sql.ToString());
         }
 
+        /// <summary>
+        /// Delete SalesPerson entity by Id :
+        ///     The IsDeleted record is set to 1; records are not actually deleted from the database
+        /// </summary>
+        /// <param name="Id"></param>
         public override void Delete(long Id)
         {
             var sql = string.Format("UPDATE dbo.Managers SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE Id = {0}", Id.ToString());

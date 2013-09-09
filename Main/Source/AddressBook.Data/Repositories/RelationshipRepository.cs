@@ -8,11 +8,20 @@ using System.Data;
 
 namespace AddressBook.Data.Repositories
 {
+    /// <summary>
+    /// Relationship Repository
+    /// </summary>
     public class RelationshipRepository : Contracts.IRelationshipRepository
     {
         private static List<Model.Entitites.Relationship.RelationshipTree> relationshipTree = new List<Model.Entitites.Relationship.RelationshipTree>();
         private static int treeDistance = 0;
 
+        /// <summary>
+        /// Get entire relationship tree based on Employee, Customer, Manager or SalesPeron Id
+        /// </summary>
+        /// <param name="parentId"></param>
+        /// <param name="parentPersonType"></param>
+        /// <returns></returns>
         public IEnumerable<Model.Entitites.Relationship.RelationshipTree> GetAll(long parentId, Model.Enum.PersonType parentPersonType)
         {
             var sql = new StringBuilder();
@@ -23,12 +32,17 @@ namespace AddressBook.Data.Repositories
 
             var parentRelationships = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Relationship.ParentRelationship>(sql.ToString());
 
-            WalkRelationshipJSONTree(parentRelationships);
+            TranverseRelationshipJSONTree(parentRelationships);
             
             return relationshipTree;
         }
 
-        private void WalkRelationshipJSONTree(List<Model.Entitites.Relationship.ParentRelationship> parentRelationships)
+        /// <summary>
+        /// Tranverse entire tree starting with the Parent and calculte the distance of each child away from the parent entity
+        /// Customer, Employee, Manager and SalesPerson can all be related to eachother
+        /// </summary>
+        /// <param name="parentRelationships"></param>
+        private void TranverseRelationshipJSONTree(List<Model.Entitites.Relationship.ParentRelationship> parentRelationships)
         {
             treeDistance += 1;
 
@@ -46,7 +60,7 @@ namespace AddressBook.Data.Repositories
                 foreach (var childRelationship in childRelationships)
                 {
 
-                    relationshipTree.Add(ConstructHierarchyRelationshipData(parentRelationship, childRelationship));
+                    relationshipTree.Add(ConstructRelationshipLeafData(parentRelationship, childRelationship));
 
                     if (childrenCount == 0)
                     {
@@ -69,11 +83,17 @@ namespace AddressBook.Data.Repositories
 
             if (relationshipsTree.Count() > 0)
             {
-                WalkRelationshipJSONTree(relationshipsTree);
+                TranverseRelationshipJSONTree(relationshipsTree);
             }
         }
 
-        private Model.Entitites.Relationship.RelationshipTree ConstructHierarchyRelationshipData(Model.Entitites.Relationship.ParentRelationship parentRelationship, Model.Entitites.Relationship.ChildRelationship childRelationship)
+        /// <summary>
+        /// Construct relationship leaf data
+        /// </summary>
+        /// <param name="parentRelationship"></param>
+        /// <param name="childRelationship"></param>
+        /// <returns></returns>
+        private Model.Entitites.Relationship.RelationshipTree ConstructRelationshipLeafData(Model.Entitites.Relationship.ParentRelationship parentRelationship, Model.Entitites.Relationship.ChildRelationship childRelationship)
         {
             var relationshipTree = new Model.Entitites.Relationship.RelationshipTree();
 
@@ -115,13 +135,17 @@ namespace AddressBook.Data.Repositories
             return relationshipTree;
         }
 
-        public void Save(long parentId, long childId, Model.Enum.PersonType parentPersonType, Model.Enum.PersonType childPersonType)
+        /// <summary>
+        /// Save parent/child relationship
+        /// </summary>
+        /// <param name="parentChildRelationship"></param>
+        public void Save(Model.Entitites.Relationship.ParentChildRelationship parentChildRelationship)
         {
             var sql = new StringBuilder();
 
-            var parentPersonTypeId = (int)parentPersonType;
+            var parentPersonTypeId = (int)parentChildRelationship.ParentPersonType;
 
-            sql.Append(string.Format("SELECT * FROM dbo.Relationships WHERE ParentId = {0} AND ParentPersonTypeId = {1}", parentId.ToString(), parentPersonTypeId.ToString()));
+            sql.Append(string.Format("SELECT * FROM dbo.Relationships WHERE ParentId = {0} AND ParentPersonTypeId = {1}", parentChildRelationship.ParentId.ToString(), parentPersonTypeId.ToString()));
 
             var relationship = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Relationship.ParentRelationship>(sql.ToString()).FirstOrDefault();
 
@@ -131,10 +155,10 @@ namespace AddressBook.Data.Repositories
                 sql = new StringBuilder();
 
                 var childRelationships = new List<Model.Entitites.Relationship.ChildRelationship>();
-                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(childId, childPersonType));
+                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(parentChildRelationship.ChildId, parentChildRelationship.ChildPersonType));
 
                 sql.Append("INSERT INTO dbo.Relationships (ParentId, ParentPersonTypeId, ChildRelationships, CreatedOn, LastModifiedOn, IsDeleted) ");
-                sql.Append(string.Format("VALUES({0}, {1}, '{2}', GETDATE(), GETDATE(), 0)", parentId.ToString(),
+                sql.Append(string.Format("VALUES({0}, {1}, '{2}', GETDATE(), GETDATE(), 0)", parentChildRelationship.ParentId.ToString(),
                                                                                         parentPersonTypeId.ToString(),
                                                                                         Newtonsoft.Json.JsonConvert.SerializeObject(childRelationships)));
 
@@ -147,12 +171,12 @@ namespace AddressBook.Data.Repositories
                 sql = new StringBuilder();
 
                 var childRelationships = new List<Model.Entitites.Relationship.ChildRelationship>();
-                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(childId, childPersonType));
+                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(parentChildRelationship.ChildId, parentChildRelationship.ChildPersonType));
 
                 sql.Append("UPDATE dbo.Relationships ");
                 sql.Append(string.Format("SET ChildRelationships = '{0}', ", Newtonsoft.Json.JsonConvert.SerializeObject(childRelationships)));
                 sql.Append("LastModifiedOn = GETDATE() ");
-                sql.Append(string.Format("WHERE ParentId = {0}", parentId.ToString()));
+                sql.Append(string.Format("WHERE ParentId = {0}", parentChildRelationship.ParentId.ToString()));
 
                 Lib.Extenstions.SqlExtensions.CommitTransaction(sql.ToString());
             }
@@ -163,12 +187,12 @@ namespace AddressBook.Data.Repositories
                 sql = new StringBuilder();
 
                 var childRelationships = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Model.Entitites.Relationship.ChildRelationship>>(relationship.ChildRelationships);
-                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(childId, childPersonType));
+                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(parentChildRelationship.ChildId, parentChildRelationship.ChildPersonType));
 
                 sql.Append("UPDATE dbo.Relationships ");
                 sql.Append(string.Format("SET ChildRelationships = '{0}', ", Newtonsoft.Json.JsonConvert.SerializeObject(childRelationships)));
                 sql.Append("LastModifiedOn = GETDATE() ");
-                sql.Append(string.Format("WHERE ParentId = {0}", parentId.ToString()));
+                sql.Append(string.Format("WHERE ParentId = {0}", parentChildRelationship.ParentId.ToString()));
 
                 Lib.Extenstions.SqlExtensions.CommitTransaction(sql.ToString());
             }

@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace AddressBook.Model.Entitites.Relationship
 {
     /// <summary>
-    /// ParentRelationship class
+    /// ParentChildRelationship class
     /// </summary>
-    public class ParentRelationship
+    public class ParentChildRelationship
     {
         public long ParentId { get; set; }
-        public int ParentPersonTypeId { get; set; }
-        public string ChildRelationships { get; set; }
+        public Model.Enum.PersonType ParentPersonType { get; set; }
+        public long ChildId { get; set; }
+        public Model.Enum.PersonType ChildPersonType { get; set; }
     }
 }

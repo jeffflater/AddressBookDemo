@@ -8,8 +8,17 @@ using System.Data;
 
 namespace AddressBook.Data.Repositories
 {
+    /// <summary>
+    /// People Repository
+    /// </summary>
     public class PeopleRepository : Infrastructure.RepositoryBase<Model.Entitites.People>, Contracts.IPeopleRepository
     {
+        /// <summary>
+        /// Get Customer, Employee, Manager, or SalesPerson entity by Id and PersonType
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="personType"></param>
+        /// <returns></returns>
         public override Model.Entitites.People GetById(long Id, Model.Enum.PersonType personType)
         {
             var sql = new StringBuilder();
@@ -34,6 +43,10 @@ namespace AddressBook.Data.Repositories
             return query.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Get all entities : Customer, Employee, Manager, and SalesPerson
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Model.Entitites.People> GetAll()
         {
             var sql = "SELECT * FROM dbo.vwPeople";
