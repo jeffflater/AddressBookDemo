@@ -9,17 +9,23 @@
         <!-- Bootstrap core CSS -->
         <link href="/Content/bootstrap/css/bootstrap.css" rel="stylesheet">
         <link href="/Content/bootstrap/css/sticky-footer.css" rel="stylesheet">
+        <link href="/Content/Site.css" rel="stylesheet">
         <script>
             head.js("/Scripts/jquery-1.7.1.min.js",
                         "/Scripts/jquery.dataTables.min.js",
                         "/Content/bootstrap/js/bootstrap.min.js",
-                        "/Scripts/addressbook.model.js");
+                        "/Scripts/addressbook.model.js", function () {
+                            $(function () {
+ 
+                            })
+                        });
+
         </script>
         
     </head>
     <body>
         <div class="container">
-            <div class="page-header">
+            <div class="page-header text-center">
               <h1>@Html.ActionLink("Address Book Demo", "Index", "AddressBook")</h1>
             </div>
             

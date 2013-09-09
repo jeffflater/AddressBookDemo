@@ -31,7 +31,7 @@
                 url: "/api/people",
                 "sAjaxDataProp": "data.inner",
                 success: function (json) {
-                    oTable = $('#peopleView').dataTable({
+                    var oTable = $('#peopleView').dataTable({
                         "aaData": json,
                         "bProcessing": false,
                         "bServerSide": false,
@@ -76,8 +76,8 @@
                                 { "sTitle": "Person Type", "aTargets": [2] }
                         ]
                     });
-                    $('input[type=text]').addClass('form-control input-sm');
-                    $('select').addClass('form-control input-sm');
+
+                    
                     $('#peopleAjaxLoader').html('');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
