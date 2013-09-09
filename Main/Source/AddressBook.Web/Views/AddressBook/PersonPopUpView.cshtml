@@ -1,75 +1,77 @@
 ﻿<script>
-    function fnSavePerson() {
+    function SavePerson() {
 
         var personType = parseInt($('#cbPersonType1').val());
-        var person;
-        var url;
-
+        
         switch (personType) {
             case 1:
-                url = '/api/customer';
-                person = new Customer(0,
-					                    $('#tbFirstName1').val(),
-					                    $('#tbLastName1').val(),
-					                    $('#tbDateOfBirth1').val(),
-					                    '',
-					                    0,
-					                    '',
-					                    '');
-                break;
-            case 2:
-                url = '/api/employee';
-                person = new Employee(0,
-					                    $('#tbFirstName1').val(),
-					                    $('#tbLastName1').val(),
-					                    $('#tbDateOfBirth1').val(),
-					                    '',
-					                    '',
-					                    '',
-					                    new Date(),
-					                    0);
-                break;
-            case 3:
-                url = '/api/manager';
-                person = new Manager(0,
-					                $('#tbFirstName1').val(),
-					                $('#tbLastName1').val(),
-					                $('#tbDateOfBirth1').val(),
-					                '',
-					                '',
-					                '',
-					                new Date(),
-					                0);
-                break;
-            case 4:
-                url = '/api/salesperson';
-                person = new SalesPerson(id,
-						                    $('#tbFirstName1').val(),
+                var customerController = new CustomerController();
+                var customer = new Customer(0,
+					                        $('#tbFirstName1').val(),
 					                        $('#tbLastName1').val(),
 					                        $('#tbDateOfBirth1').val(),
-						                    '',
-						                    '',
-						                    '',
-						                    new Date(),
-						                    0);
+					                        '',
+					                        0,
+					                        '',
+					                        '');
+
+                customerController.Post(customer, function (data) {
+                    RenderSavePersonResponse(data);
+                });
+                break;
+            case 2:
+                var employeeController = new EmployeeController();
+                var employee = new Employee(0,
+					                        $('#tbFirstName1').val(),
+					                        $('#tbLastName1').val(),
+					                        $('#tbDateOfBirth1').val(),
+					                        '',
+					                        '',
+					                        '',
+					                        new Date(),
+					                        0);
+                employeeController.Post(employee, function (data) {
+                    RenderSavePersonResponse(data);
+                });
+                break;
+            case 3:
+                var managerController = new ManagerController();
+                var manager = new Manager(0,
+					                        $('#tbFirstName1').val(),
+					                        $('#tbLastName1').val(),
+					                        $('#tbDateOfBirth1').val(),
+					                        '',
+					                        '',
+					                        '',
+					                        new Date(),
+					                        0);
+                managerController.Post(manager, function (data) {
+                    RenderSavePersonResponse(data);
+                });
+                break;
+            case 4:
+                var salesPersonController = new SalesPersonController();
+                var salesPerson = new SalesPerson(id,
+						                            $('#tbFirstName1').val(),
+					                                $('#tbLastName1').val(),
+					                                $('#tbDateOfBirth1').val(),
+						                            '',
+						                            '',
+						                            '',
+						                            new Date(),
+						                            0);
+                salesPersonController.Post(salesPerson, function (data) {
+                    RenderSavePersonResponse(data);
+                });
                 break;
         }
+    }
 
-        $.ajax({
-            type: 'POST',
-            contentType: 'application/json',
-            dataType: 'json',
-            url: url,
-            data: JSON.stringify(person),
-            success: function (json) {
-                $('#personModal').modal('hide');
-                fnFireAppMessage('New person has been created/modified.');
-                fnGetPeople();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                debugger;
-            }
-        });
+    function RenderSavePersonResponse(data)
+    {
+        $('#personModal').modal('hide');
+        fnFireAppMessage('New person has been created/modified.');
+        RenderPeopleView();
     }
 </script>
 
@@ -96,7 +98,7 @@
             </div>
             <div class="form-group">
                 <label for="cbPersonType1">Person Type</label>
-                <select class="form-control" id="cbPersonType" class="input-sm">
+                <select class="form-control" id="cbPersonType1" class="input-sm">
                     <option value="1">Customer</option>
                     <option value="2">Employee</option>
                     <option value="3">Manager</option>
@@ -107,7 +109,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="fnSavePerson();">Save changes</button>
+        <button type="button" class="btn btn-primary" onclick="SavePerson();">Save changes</button>
     </div>
     </div>
 </div>

@@ -14,6 +14,22 @@
             }
         });
     }
+    this.Post = function (model, callback) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/customer",
+            data: JSON.stringify(model),
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    }
 }
 
 function EmployeeController() {
@@ -23,6 +39,22 @@ function EmployeeController() {
             contentType: 'application/json',
             dataType: 'json',
             url: "/api/employee/" + id,
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    }
+    this.Post = function (model, callback) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/employee",
+            data: JSON.stringify(model),
             "sAjaxDataProp": "data.inner",
             success: function (data) {
                 callback.apply(this, [data]);
@@ -50,6 +82,22 @@ function ManagerController() {
             }
         });
     }
+    this.Post = function (model, callback) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/manager",
+            data: JSON.stringify(model),
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    }
 }
 
 function SalesPersonController() {
@@ -59,6 +107,22 @@ function SalesPersonController() {
             contentType: 'application/json',
             dataType: 'json',
             url: "/api/salesperson/" + id,
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    }
+    this.Post = function (model, callback) {
+        $.ajax({
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/salesperson",
+            data: JSON.stringify(model),
             "sAjaxDataProp": "data.inner",
             success: function (data) {
                 callback.apply(this, [data]);
