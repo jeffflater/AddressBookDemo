@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBook.Model.Entitites
+namespace AddressBook.Model.Entitites.Relationship
 {
-    public class RelationshipHierarchy
+    public class RelationshipTree
     {
         public long ParentId { get; set; }
         public Model.Enum.PersonType ParentPersonType { get; set; }
@@ -25,11 +25,11 @@ namespace AddressBook.Model.Entitites
 
         public int TreeDistance { get; set; }
 
-        public RelationshipHierarchy()
+        public RelationshipTree()
         {
         }
 
-        public RelationshipHierarchy(long parentId, Model.Enum.PersonType parentPersonType, long childId, Model.Enum.PersonType childPersonType, int treeDistance)
+        public RelationshipTree(long parentId, Model.Enum.PersonType parentPersonType, long childId, Model.Enum.PersonType childPersonType, int treeDistance)
         {
             ParentId = parentId;
             ParentPersonType = parentPersonType;

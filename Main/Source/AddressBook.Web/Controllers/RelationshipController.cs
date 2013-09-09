@@ -11,12 +11,12 @@ namespace AddressBook.Web.Controllers
     {
         Data.Repositories.RelationshipRepository repository = new Data.Repositories.RelationshipRepository();
 
-        public IEnumerable<Model.Entitites.ParentRelationship> Get(long Id)
+        public IEnumerable<Model.Entitites.Relationship.ParentRelationship> Get(long Id)
         {
             return null; //repository.GetAll(Id);
         }
 
-        public void Post(Model.Entitites.ParentRelationship relationship)
+        public void Post(Model.Entitites.Relationship.ParentRelationship relationship)
         {
             //repository.Save(relationship);
         }

@@ -10,10 +10,10 @@ namespace AddressBook.Data.Repositories
 {
     public class RelationshipRepository : Contracts.IRelationshipRepository
     {
-        private static List<Model.Entitites.RelationshipHierarchy>  relationshipHierarchy = new List<Model.Entitites.RelationshipHierarchy>();
+        private static List<Model.Entitites.Relationship.RelationshipTree> relationshipTree = new List<Model.Entitites.Relationship.RelationshipTree>();
         private static int treeDistance = 0;
 
-        public IEnumerable<Model.Entitites.RelationshipHierarchy> GetAll(long parentId, Model.Enum.PersonType parentPersonType)
+        public IEnumerable<Model.Entitites.Relationship.RelationshipTree> GetAll(long parentId, Model.Enum.PersonType parentPersonType)
         {
             var sql = new StringBuilder();
 
@@ -21,24 +21,24 @@ namespace AddressBook.Data.Repositories
 
             sql.Append(string.Format("SELECT * FROM dbo.Relationships WHERE ParentId = {0} AND ParentPersonTypeId = {1}", parentId.ToString(), parentPersonTypeId.ToString()));
 
-            var parentRelationships = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.ParentRelationship>(sql.ToString());
+            var parentRelationships = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Relationship.ParentRelationship>(sql.ToString());
 
             WalkRelationshipJSONTree(parentRelationships);
             
-            return relationshipHierarchy;
+            return relationshipTree;
         }
 
-        private void WalkRelationshipJSONTree(List<Model.Entitites.ParentRelationship> parentRelationships)
+        private void WalkRelationshipJSONTree(List<Model.Entitites.Relationship.ParentRelationship> parentRelationships)
         {
             treeDistance += 1;
 
             var sql = new StringBuilder();
-            
-            var relationshipsTree = new List<Model.Entitites.ParentRelationship>();
+
+            var relationshipsTree = new List<Model.Entitites.Relationship.ParentRelationship>();
 
             foreach (var parentRelationship in parentRelationships)
             {
-                var childRelationships = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Model.Entitites.ChildRelationship>>(parentRelationship.ChildRelationships);
+                var childRelationships = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Model.Entitites.Relationship.ChildRelationship>>(parentRelationship.ChildRelationships);
 
                 sql.Append("SELECT * FROM dbo.Relationships ");
 
@@ -46,7 +46,7 @@ namespace AddressBook.Data.Repositories
                 foreach (var childRelationship in childRelationships)
                 {
 
-                    relationshipHierarchy.Add(ConstructHierarchyRelationshipData(parentRelationship, childRelationship));
+                    relationshipTree.Add(ConstructHierarchyRelationshipData(parentRelationship, childRelationship));
 
                     if (childrenCount == 0)
                     {
@@ -59,7 +59,7 @@ namespace AddressBook.Data.Repositories
                     childrenCount += 1;
                 }
 
-                var subTreeRelationships = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.ParentRelationship>(sql.ToString());
+                var subTreeRelationships = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Relationship.ParentRelationship>(sql.ToString());
 
                 if (subTreeRelationships.Count() > 0)
                 {
@@ -73,46 +73,46 @@ namespace AddressBook.Data.Repositories
             }
         }
 
-        private Model.Entitites.RelationshipHierarchy ConstructHierarchyRelationshipData(Model.Entitites.ParentRelationship parentRelationship, Model.Entitites.ChildRelationship childRelationship)
+        private Model.Entitites.Relationship.RelationshipTree ConstructHierarchyRelationshipData(Model.Entitites.Relationship.ParentRelationship parentRelationship, Model.Entitites.Relationship.ChildRelationship childRelationship)
         {
-            var relationshipHierarchy = new Model.Entitites.RelationshipHierarchy();
+            var relationshipTree = new Model.Entitites.Relationship.RelationshipTree();
 
-            relationshipHierarchy.ParentId = parentRelationship.ParentId;
-            relationshipHierarchy.ParentPersonType = (Model.Enum.PersonType)parentRelationship.ParentPersonTypeId;
-            relationshipHierarchy.ChildId = childRelationship.Id;
-            relationshipHierarchy.ChildPersonType = childRelationship.PersonType;
+            relationshipTree.ParentId = parentRelationship.ParentId;
+            relationshipTree.ParentPersonType = (Model.Enum.PersonType)parentRelationship.ParentPersonTypeId;
+            relationshipTree.ChildId = childRelationship.Id;
+            relationshipTree.ChildPersonType = childRelationship.PersonType;
 
             switch (childRelationship.PersonType) 
             { 
                 case Model.Enum.PersonType.Customer:
                     var customerRepository = new CustomerRepository();
                     var customer = customerRepository.GetById(childRelationship.Id);
-                    relationshipHierarchy.ChildFirstName = customer.FirstName;
-                    relationshipHierarchy.ChildLastName = customer.LastName;
+                    relationshipTree.ChildFirstName = customer.FirstName;
+                    relationshipTree.ChildLastName = customer.LastName;
                     break;
                 case Model.Enum.PersonType.Employee:
                     var employeeRepository = new EmployeeRepository();
                     var employee = employeeRepository.GetById(childRelationship.Id);
-                    relationshipHierarchy.ChildFirstName = employee.FirstName;
-                    relationshipHierarchy.ChildLastName = employee.LastName;
+                    relationshipTree.ChildFirstName = employee.FirstName;
+                    relationshipTree.ChildLastName = employee.LastName;
                     break;
                 case Model.Enum.PersonType.Manager:
                     var managerRepository = new ManagerRepository();
                     var manager = managerRepository.GetById(childRelationship.Id);
-                    relationshipHierarchy.ChildFirstName = manager.FirstName;
-                    relationshipHierarchy.ChildLastName = manager.LastName;
+                    relationshipTree.ChildFirstName = manager.FirstName;
+                    relationshipTree.ChildLastName = manager.LastName;
                     break;
                 case Model.Enum.PersonType.SalesPerson:
                     var salesPersonRepository = new SalesPersonRepository();
                     var salesPerson = salesPersonRepository.GetById(childRelationship.Id);
-                    relationshipHierarchy.ChildFirstName = salesPerson.FirstName;
-                    relationshipHierarchy.ChildLastName = salesPerson.LastName;
+                    relationshipTree.ChildFirstName = salesPerson.FirstName;
+                    relationshipTree.ChildLastName = salesPerson.LastName;
                     break;
             }
 
-            relationshipHierarchy.TreeDistance = treeDistance;
+            relationshipTree.TreeDistance = treeDistance;
 
-            return relationshipHierarchy;
+            return relationshipTree;
         }
 
         public void Save(long parentId, long childId, Model.Enum.PersonType parentPersonType, Model.Enum.PersonType childPersonType)
@@ -123,15 +123,15 @@ namespace AddressBook.Data.Repositories
 
             sql.Append(string.Format("SELECT * FROM dbo.Relationships WHERE ParentId = {0} AND ParentPersonTypeId = {1}", parentId.ToString(), parentPersonTypeId.ToString()));
 
-            var relationship = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.ParentRelationship>(sql.ToString()).FirstOrDefault();
+            var relationship = Lib.Extenstions.SqlExtensions.QueryTransaction<Model.Entitites.Relationship.ParentRelationship>(sql.ToString()).FirstOrDefault();
 
             //create new parent / child relationship
             if (relationship == null )
             {
                 sql = new StringBuilder();
 
-                var childRelationships = new List<Model.Entitites.ChildRelationship>();
-                childRelationships.Add(new Model.Entitites.ChildRelationship(childId, childPersonType));
+                var childRelationships = new List<Model.Entitites.Relationship.ChildRelationship>();
+                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(childId, childPersonType));
 
                 sql.Append("INSERT INTO dbo.Relationships (ParentId, ParentPersonTypeId, ChildRelationships, CreatedOn, LastModifiedOn, IsDeleted) ");
                 sql.Append(string.Format("VALUES({0}, {1}, '{2}', GETDATE(), GETDATE(), 0)", parentId.ToString(),
@@ -146,8 +146,8 @@ namespace AddressBook.Data.Repositories
             {
                 sql = new StringBuilder();
 
-                var childRelationships = new List<Model.Entitites.ChildRelationship>();
-                childRelationships.Add(new Model.Entitites.ChildRelationship(childId, childPersonType));
+                var childRelationships = new List<Model.Entitites.Relationship.ChildRelationship>();
+                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(childId, childPersonType));
 
                 sql.Append("UPDATE dbo.Relationships ");
                 sql.Append(string.Format("SET ChildRelationships = '{0}', ", Newtonsoft.Json.JsonConvert.SerializeObject(childRelationships)));
@@ -162,8 +162,8 @@ namespace AddressBook.Data.Repositories
             {
                 sql = new StringBuilder();
 
-                var childRelationships = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Model.Entitites.ChildRelationship>>(relationship.ChildRelationships);
-                childRelationships.Add(new Model.Entitites.ChildRelationship(childId, childPersonType));
+                var childRelationships = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Model.Entitites.Relationship.ChildRelationship>>(relationship.ChildRelationships);
+                childRelationships.Add(new Model.Entitites.Relationship.ChildRelationship(childId, childPersonType));
 
                 sql.Append("UPDATE dbo.Relationships ");
                 sql.Append(string.Format("SET ChildRelationships = '{0}', ", Newtonsoft.Json.JsonConvert.SerializeObject(childRelationships)));
