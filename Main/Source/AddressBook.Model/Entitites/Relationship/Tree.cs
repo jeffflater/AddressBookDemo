@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace AddressBook.Model.Entitites.Relationship
 {
     /// <summary>
-    /// ParentRelationship class
+    /// 
     /// </summary>
-    public class ParentRelationship
+    public class Tree : Abstract.Entity
     {
         public long ParentId { get; set; }
-        public int ParentPersonTypeId { get; set; }
-        public string ChildRelationships { get; set; }
+        public Enum.PersonType ParentPersonType { get; set; }
+        public IEnumerable<Leaf> ChildBranch { get; set; }
     }
 }

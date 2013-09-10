@@ -21,18 +21,18 @@ namespace AddressBook.Data.Repositories
         /// <param name="parentId"></param>
         /// <param name="parentPersonType"></param>
         /// <returns></returns>
-        public IEnumerable<Model.Entitites.Relationship.RelationshipTree> GetAll(long parentId, Model.Enum.PersonType parentPersonType)
+        public IEnumerable<Model.Entitites.Relationship.Leaf> GetAll(Model.Entitites.Relationship.Tree tree)
         {
-            return relationshipDTO.GetAll(parentId, parentPersonType);
+            return relationshipDTO.GetAll(tree);
         }
 
         /// <summary>
         /// Save parent/child relationship
         /// </summary>
         /// <param name="parentChildRelationship"></param>
-        public void Save(Model.Entitites.Relationship.ParentChildRelationship parentChildRelationship)
+        public void Save(Model.Entitites.Relationship.Tree tree)
         {
-            relationshipDTO.Save(parentChildRelationship);
+            relationshipDTO.Save(tree);
         }
     }
 }

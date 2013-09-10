@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace AddressBook.Model.Entitites.Relationship
 {
     /// <summary>
-    /// ChildRelationship class : Inherits from abstract Entity class
+    /// 
     /// </summary>
-    public class ChildRelationship : Abstract.Entity
+    public class Leaf : Abstract.Entity
     {
         public Model.Enum.PersonType PersonType { get; set; }
 
@@ -18,7 +18,7 @@ namespace AddressBook.Model.Entitites.Relationship
         /// </summary>
         /// <param name="id"></param>
         /// <param name="personType"></param>
-        public ChildRelationship(long id, Model.Enum.PersonType personType)
+        public Leaf(long id, Model.Enum.PersonType personType)
         {
             Id = id;
             PersonType = personType;

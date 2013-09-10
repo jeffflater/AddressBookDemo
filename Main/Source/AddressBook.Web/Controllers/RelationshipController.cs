@@ -11,14 +11,18 @@ namespace AddressBook.Web.Controllers
     {
         Data.Repositories.RelationshipRepository repository = new Data.Repositories.RelationshipRepository();
 
-        public IEnumerable<Model.Entitites.Relationship.ParentRelationship> Get(long Id)
+        public IEnumerable<Model.Entitites.Relationship.Leaf> Get(long Id, int personTypeId)
         {
-            return null; //repository.GetAll(Id);
+            var tree = new Model.Entitites.Relationship.Tree();
+            tree.ParentId = Id;
+            tree.ParentPersonType = (Model.Enum.PersonType)personTypeId;
+
+            return repository.GetAll(tree);
         }
 
-        public void Post(Model.Entitites.Relationship.ParentRelationship relationship)
+        public void Post(Model.Entitites.Relationship.Tree tree)
         {
-            //repository.Save(relationship);
+            repository.Save(tree);
         }
     }
 }
