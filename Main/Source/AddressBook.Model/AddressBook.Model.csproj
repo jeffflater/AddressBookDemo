@@ -40,6 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Abstract\PersonDto.cs" />
+    <Compile Include="DTO\CustomerDto.cs" />
+    <Compile Include="DTO\EmployeeDto.cs" />
+    <Compile Include="DTO\ManagerDto.cs" />
+    <Compile Include="DTO\PersonDto.cs" />
+    <Compile Include="DTO\RelationshipDto.cs" />
+    <Compile Include="DTO\SalesPersonDto.cs" />
     <Compile Include="Entitites\Abstract\Personnel.cs" />
     <Compile Include="Entitites\Abstract\Entity.cs" />
     <Compile Include="Entitites\Abstract\Person.cs" />
@@ -47,12 +54,12 @@
     <Compile Include="Entitites\Customer.cs" />
     <Compile Include="Entitites\Employee.cs" />
     <Compile Include="Entitites\Manager.cs" />
-    <Compile Include="Entitites\People.cs" />
     <Compile Include="Entitites\Relationship\Tree.cs" />
     <Compile Include="Entitites\SalesPerson.cs" />
     <Compile Include="Enum\PersonType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBook.Data.DTO.Contracts
+namespace AddressBook.Model.DTO
 {
-    interface IPeopleDTO
+    public class ManagerDto : Abstract.PersonDto
     {
+        public int SpendingLimit { get; set; }
     }
 }

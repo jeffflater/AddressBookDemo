@@ -4,17 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBook.Model.Entitites
+namespace AddressBook.Model.DTO
 {
-    /// <summary>
-    /// Customer class : Inherits from abstract Person class
-    /// </summary>
-    public class Customer : Abstract.Person
+    public class CustomerDto : Abstract.PersonDto
     {
         public string Gender { get; set; }
         public int Age { get; set; }
         public string Race { get; set; }
         public string Education { get; set; }
-        public Relationship.Tree Tree { get; set; }
     }
 }

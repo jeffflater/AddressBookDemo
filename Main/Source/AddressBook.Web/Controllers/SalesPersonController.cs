@@ -11,9 +11,11 @@ namespace AddressBook.Web.Controllers
     {
         Data.Repositories.SalesPersonRepository repository = new Data.Repositories.SalesPersonRepository();
 
-        public Model.Entitites.SalesPerson Get(long Id)
+        public Model.DTO.SalesPersonDto Get(long Id)
         {
-            return repository.GetById(Id);
+            var salesPerson = AutoMapper.Mapper.DynamicMap<Model.Entitites.SalesPerson, Model.DTO.SalesPersonDto>(repository.GetById(Id));
+
+            return salesPerson;
         }
 
         public void Post(Model.Entitites.SalesPerson salesPerson)

@@ -9,3 +9,14 @@ D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.xml
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.xml
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.pdb
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4.config
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.dll.config
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.dll
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.pdb
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.dll
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.Net4.dll
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.dll
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.xml
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.xml
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.dll
+C:\Github\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.pdb

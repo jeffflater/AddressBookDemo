@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBook.Data.Repositories.Contracts
+namespace AddressBook.Model.DTO
 {
-    interface IPeopleRepository
+    public class PersonDto : Abstract.PersonDto
     {
+        public Enum.PersonType PersonType { get; set; }
     }
 }

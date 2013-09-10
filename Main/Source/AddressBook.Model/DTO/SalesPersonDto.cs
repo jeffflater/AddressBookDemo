@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AddressBook.Data.DTO.Contracts
+namespace AddressBook.Model.DTO
 {
-    interface ISalesPersonDTO
+    public class SalesPersonDto : Abstract.PersonDto
     {
+        public int WeeklySalesGoal { get; set; }
     }
 }

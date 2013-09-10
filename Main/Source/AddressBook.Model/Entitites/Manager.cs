@@ -12,5 +12,6 @@ namespace AddressBook.Model.Entitites
     public class Manager : Abstract.Personnel
     {
         public int SpendingLimit { get; set; }
+        public Relationship.Tree Tree { get; set; }
     }
 }

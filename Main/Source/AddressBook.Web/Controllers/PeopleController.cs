@@ -9,11 +9,27 @@ namespace AddressBook.Web.Controllers
 {
     public class PeopleController : ApiController
     {
-        private static Data.Repositories.PeopleRepository repository = new Data.Repositories.PeopleRepository();
-
-        public IEnumerable<Model.Entitites.People> Get()
+        public IEnumerable<Model.DTO.PersonDto> Get()
         {
-            return repository.GetAll();
+            var people = new List<Model.DTO.PersonDto>();
+
+            var customerRepository = new Data.Repositories.CustomerRepository();
+            var customers = AutoMapper.Mapper.DynamicMap<IEnumerable<Model.Entitites.Customer>, List<Model.DTO.PersonDto>>(customerRepository.GetAll());
+            people.AddRange(customers);
+
+            var employeeRepository = new Data.Repositories.EmployeeRepository();
+            var employees = AutoMapper.Mapper.DynamicMap<IEnumerable<Model.Entitites.Employee>, List<Model.DTO.PersonDto>>(employeeRepository.GetAll());
+            people.AddRange(employees);
+
+            var managerRepository = new Data.Repositories.ManagerRepository();
+            var managers = AutoMapper.Mapper.DynamicMap<IEnumerable<Model.Entitites.Manager>, List<Model.DTO.PersonDto>>(managerRepository.GetAll());
+            people.AddRange(managers);
+
+            var salesPersonRepository = new Data.Repositories.SalesPersonRepository();
+            var salesPeople = AutoMapper.Mapper.DynamicMap<IEnumerable<Model.Entitites.SalesPerson>, List<Model.DTO.PersonDto>>(salesPersonRepository.GetAll());
+            people.AddRange(salesPeople);
+
+            return people;
         }
     }
 }

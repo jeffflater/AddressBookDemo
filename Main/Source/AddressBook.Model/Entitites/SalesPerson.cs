@@ -12,5 +12,6 @@ namespace AddressBook.Model.Entitites
     public class SalesPerson : Abstract.Personnel
     {
         public int WeeklySalesGoal { get; set; }
+        public Relationship.Tree Tree { get; set; }
     }
 }

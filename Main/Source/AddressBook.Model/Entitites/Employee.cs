@@ -12,5 +12,6 @@ namespace AddressBook.Model.Entitites
     public class Employee : Abstract.Personnel
     {
         public bool ApprovedOvertime { get; set; }
+        public Relationship.Tree Tree { get; set; }
     }
 }
