@@ -292,7 +292,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\AddressBook\PeopleView.cshtml" />
-    <Content Include="Views\AddressBook\RelationshipView.cshtml" />
     <Content Include="Views\AddressBook\PersonView.cshtml" />
     <Content Include="Views\AddressBook\PersonPopUpView.cshtml" />
   </ItemGroup>

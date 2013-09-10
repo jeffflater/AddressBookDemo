@@ -11,8 +11,8 @@ namespace AddressBook.Web
         {
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}/{typeId}",
+                defaults: new { id = RouteParameter.Optional, typeId = RouteParameter.Optional }
             );
         }
     }

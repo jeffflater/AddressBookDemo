@@ -20,5 +20,10 @@ namespace AddressBook.Web.Controllers
         {
             repository.Save(manager);
         }
+
+        public void Delete(long Id)
+        {
+            repository.Delete(Id);
+        }
     }
 }

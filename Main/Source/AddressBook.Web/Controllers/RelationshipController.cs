@@ -11,11 +11,11 @@ namespace AddressBook.Web.Controllers
     {
         Data.Repositories.RelationshipRepository repository = new Data.Repositories.RelationshipRepository();
 
-        public IEnumerable<Model.Entitites.Relationship.Leaf> Get(long Id, int personTypeId)
+        public IEnumerable<Model.Entitites.Relationship.Leaf> Get(long Id, int TypeId)
         {
             var tree = new Model.Entitites.Relationship.Tree();
             tree.ParentId = Id;
-            tree.ParentPersonType = (Model.Enum.PersonType)personTypeId;
+            tree.ParentPersonType = (Model.Enum.PersonType)TypeId;
 
             return repository.GetAll(tree);
         }

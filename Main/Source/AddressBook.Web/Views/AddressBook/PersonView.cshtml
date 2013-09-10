@@ -34,8 +34,7 @@
 
     function RenderPersonDetailView(data, personType)
     {
-        debugger;
-        fnFireAppMessage(data.FullName + " has been selected.");
+        RenderMessage(data.FullName + " has been selected.");
 
         $('#tbFirstName').val(data.FirstName);
         $('#tbLastName').val(data.LastName);
@@ -80,6 +79,21 @@
         $('#additionalDetails').html(details);
     }
 
+    function DeletePersonConfirm()
+    {
+        $('#deleteRelationshipModal').modal('show');
+    }
+
+    function DeletePerson()
+    {
+        RenderMessage('Person has been deleted.');
+        $('#deleteRelationshipModal').modal('hide');
+        $('#tbFirstName').val('');
+        $('#tbLastName').val('');
+        $('#tbDateOfBirth').val('');
+        $('#additionalDetails').html('');
+    }
+
 </script>
 
 <form role="form">
@@ -98,3 +112,38 @@
     <p class="lead">Additional Information:</p>
     <div class="alert alert-warning" id="additionalDetails"></div>
 </form>
+
+
+<table id="relationshipView" class="table table-striped table-bordered table-hover table-condensed">
+	<thead>
+		<tr>
+            <th>Id</th>
+            <th>FullName</th>
+            <th>PersonType</th>
+            <th>Distance</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+
+<input id="btnDelete" type="button" value="Delete" class="btn btn-default" onclick="DeletePersonConfirm();" />
+<a data-toggle="modal" href="#personModal" class="btn btn-default pull-right">Edit</a>
+
+<div class="modal fade" id="deleteRelationshipModal" tabindex="-1" role="dialog" aria-labelledby="deleteRelationshipModal" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Delete this Person!</h4>
+    </div>
+    <div class="modal-body">
+      Are you sure you want to delete this person?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="DeletePerson();">Save changes</button>
+    </div>
+    </div>
+</div>
+</div>

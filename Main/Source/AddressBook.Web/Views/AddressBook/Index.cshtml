@@ -1,5 +1,5 @@
 ﻿<script>
-    function fnFireAppMessage(msg) {
+    function RenderMessage(msg) {
         $('#appMessage').html(msg);
     }
 </script>
@@ -10,10 +10,6 @@
   <div class="col-xs-6">
       @{
             Html.RenderAction("PersonPartialView");
-        }
-
-      @{
-            Html.RenderAction("RelationshipPartialView");
         }
   </div>
   <div class="col-xs-6">@{

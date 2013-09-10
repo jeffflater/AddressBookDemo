@@ -1,4 +1,11 @@
 ﻿<script>
+
+    function RenderPersonPopUpView() {
+        $('#tbFirstName1').val('');
+		$('#tbLastName1').val('');
+		$('#tbDateOfBirth1').val('');
+    }
+
     function SavePerson() {
 
         var personType = parseInt($('#cbPersonType1').val());
@@ -70,8 +77,9 @@
     function RenderSavePersonResponse(data)
     {
         $('#personModal').modal('hide');
-        fnFireAppMessage('New person has been created/modified.');
+        RenderMessage('New person has been created/modified.');
         RenderPeopleView();
+        
     }
 </script>
 
