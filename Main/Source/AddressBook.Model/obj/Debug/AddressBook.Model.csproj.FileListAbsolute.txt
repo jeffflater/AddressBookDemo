@@ -3,11 +3,12 @@ D:\Projects\AddressBook\AddressBook.Model\bin\Debug\AddressBook.Model.pdb
 D:\Projects\AddressBook\AddressBook.Model\obj\Debug\AddressBook.Model.csprojResolveAssemblyReference.cache
 D:\Projects\AddressBook\AddressBook.Model\obj\Debug\AddressBook.Model.dll
 D:\Projects\AddressBook\AddressBook.Model\obj\Debug\AddressBook.Model.pdb
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\bin\Debug\AddressBook.Model.dll
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\bin\Debug\AddressBook.Model.pdb
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.dll
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.pdb
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Model\bin\Debug\AddressBook.Model.dll
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Model\bin\Debug\AddressBook.Model.pdb
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.dll
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\bin\Debug\AddressBook.Model.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\bin\Debug\AddressBook.Model.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.csprojResolveAssemblyReference.cache
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Model\obj\Debug\AddressBook.Model.pdb

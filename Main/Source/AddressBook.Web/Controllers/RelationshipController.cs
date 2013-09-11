@@ -1,28 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using AddressBook.Data.Repositories;
+using AddressBook.Model.DTO;
+using AddressBook.Model.Entitites.Relationship;
+using AddressBook.Model.Enum;
+using AutoMapper;
 
 namespace AddressBook.Web.Controllers
 {
     public class RelationshipController : ApiController
     {
-        Data.Repositories.RelationshipRepository repository = new Data.Repositories.RelationshipRepository();
+        private static readonly RelationshipRepository Repository = new RelationshipRepository();
 
-        public IEnumerable<Model.Entitites.Relationship.Leaf> Get(long Id, int TypeId)
+        public IEnumerable<RelationshipDto> Get(long id, int typeId)
         {
-            var tree = new Model.Entitites.Relationship.Tree();
-            tree.ParentId = Id;
-            tree.ParentPersonType = (Model.Enum.PersonType)TypeId;
+            var tree = new Tree
+            {
+                ParentId = id,
+                ParentPersonType = (PersonType) typeId
+            };
 
-            return repository.GetAll(tree);
+            var relationships = Mapper.DynamicMap<IEnumerable<Leaf>, List<RelationshipDto>>(Repository.GetAll(tree));
+
+            return relationships;
         }
 
-        public void Post(Model.Entitites.Relationship.Tree tree)
+        public void Post(Tree tree)
         {
-            repository.Save(tree);
+            Repository.Save(tree);
         }
     }
 }

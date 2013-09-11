@@ -1,31 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using AddressBook.Data.Repositories;
+using AddressBook.Model.DTO;
+using AddressBook.Model.Entitites;
+using AutoMapper;
 
 namespace AddressBook.Web.Controllers
 {
     public class SalesPersonController : ApiController
     {
-        Data.Repositories.SalesPersonRepository repository = new Data.Repositories.SalesPersonRepository();
+        private static readonly SalesPersonRepository Repository = new SalesPersonRepository();
 
-        public Model.DTO.SalesPersonDto Get(long Id)
+        public SalesPersonDto Get(long id)
         {
-            var salesPerson = AutoMapper.Mapper.DynamicMap<Model.Entitites.SalesPerson, Model.DTO.SalesPersonDto>(repository.GetById(Id));
+            var salesPerson = Mapper.DynamicMap<SalesPerson, SalesPersonDto>(Repository.GetById(id));
 
             return salesPerson;
         }
 
-        public void Post(Model.Entitites.SalesPerson salesPerson)
+        public void Post(SalesPerson salesPerson)
         {
-            repository.Save(salesPerson);
+            Repository.Save(salesPerson);
         }
 
-        public void Delete(long Id)
+        public void Delete(long id)
         {
-            repository.Delete(Id);
+            Repository.Delete(id);
         }
     }
 }

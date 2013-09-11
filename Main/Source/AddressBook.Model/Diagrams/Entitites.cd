@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AddressBook.Model.Entitites.Abstract.Entity" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAAAAAAAAAAAAAAAAACAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Entitites\Abstract\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Abstract.Person" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAIAAAAAAAAAAAAAQAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Entitites\Abstract\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Abstract.Personnel" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAECAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Entitites\Abstract\Personnel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Relationship.Leaf" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entitites\Relationship\Leaf.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Relationship.Tree" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAIAgAAAAAAAAA=</HashCode>
+      <FileName>Entitites\Relationship\Tree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Customer" Collapsed="true">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAACAAACAAEAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Entitites\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Employee" Collapsed="true">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entitites\Employee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.Manager" Collapsed="true">
+    <Position X="6" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Entitites\Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AddressBook.Model.Entitites.SalesPerson" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entitites\SalesPerson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

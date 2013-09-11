@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AddressBook.Model.Entitites.Abstract;
+using AddressBook.Model.Entitites.Relationship;
 
 namespace AddressBook.Model.Entitites
 {
     /// <summary>
-    /// Manager class : Inherits from abstract Personnel class
+    ///     Concrete Manager class : Inherits from abstract Personnel class
     /// </summary>
-    public class Manager : Abstract.Personnel
+    public class Manager : Personnel
     {
         public int SpendingLimit { get; set; }
-        public Relationship.Tree Tree { get; set; }
+        public Tree Tree { get; set; }
     }
 }

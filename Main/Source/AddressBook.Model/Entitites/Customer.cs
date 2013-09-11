@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AddressBook.Model.Entitites.Abstract;
+using AddressBook.Model.Entitites.Relationship;
 
 namespace AddressBook.Model.Entitites
 {
     /// <summary>
-    /// Customer class : Inherits from abstract Person class
+    ///     Concrete Customer class : Inherits from abstract Person class
     /// </summary>
-    public class Customer : Abstract.Person
+    public class Customer : Person
     {
         public string Gender { get; set; }
         public int Age { get; set; }
         public string Race { get; set; }
         public string Education { get; set; }
-        public Relationship.Tree Tree { get; set; }
+        public Tree Tree { get; set; }
     }
 }

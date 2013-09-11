@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AddressBook.Model.Enum;
 
 namespace AddressBook.Model.DTO
 {
+    /// <summary>
+    ///     Concrete PersonDto Class : Inherits from abstract PersonDto class
+    /// </summary>
     public class PersonDto : Abstract.PersonDto
     {
-        public Enum.PersonType PersonType { get; set; }
+        public PersonType PersonType { get; set; }
     }
 }

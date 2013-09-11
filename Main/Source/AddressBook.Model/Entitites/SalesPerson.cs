@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AddressBook.Model.Entitites.Abstract;
+using AddressBook.Model.Entitites.Relationship;
 
 namespace AddressBook.Model.Entitites
 {
     /// <summary>
-    /// SalesPerson class : Inherits from abstract Personnel class
+    ///     Concrete SalesPerson class : Inherits from abstract Personnel class
     /// </summary>
-    public class SalesPerson : Abstract.Personnel
+    public class SalesPerson : Personnel
     {
         public int WeeklySalesGoal { get; set; }
-        public Relationship.Tree Tree { get; set; }
+        public Tree Tree { get; set; }
     }
 }

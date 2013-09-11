@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AddressBook.Data.Repositories.Contracts
+﻿namespace AddressBook.Data.Repositories.Contracts
 {
-    interface IManagerRepository
+    internal interface IManagerRepository
     {
     }
 }

@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AddressBook.Model.Enum;
 
 namespace AddressBook.Model.DTO
 {
+    /// <summary>
+    ///     Concrete RelationshipDto Class : Inherits from abstract PersonDto class
+    /// </summary>
     public class RelationshipDto
     {
         public long ParentId { get; set; }
-        public Enum.PersonType ParentPersonType { get; set; }
+        public PersonType ParentPersonType { get; set; }
 
         public long ChildId { get; set; }
-        public Enum.PersonType ChildPersonType { get; set; }
+        public PersonType ChildPersonType { get; set; }
 
         public string ChildFirstName { get; set; }
         public string ChildLastName { get; set; }
+
         public string ChildFullName
         {
-            get
-            {
-                return string.Format("{0}, {1}", ChildLastName, ChildFirstName);
-            }
+            get { return string.Format("{0}, {1}", ChildLastName, ChildFirstName); }
         }
+
+        public int Distance { get; set; }
     }
 }

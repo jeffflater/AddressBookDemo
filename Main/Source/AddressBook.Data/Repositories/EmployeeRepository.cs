@@ -1,58 +1,63 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
+using AddressBook.Data.Infrastructure;
+using AddressBook.Data.Repositories.Contracts;
+using AddressBook.Lib.Extenstions;
+using AddressBook.Model.Entitites;
+using AddressBook.Model.Enum;
 
 namespace AddressBook.Data.Repositories
 {
     /// <summary>
-    /// Employee Repository
+    ///     Employee Repository
     /// </summary>
-    public class EmployeeRepository : Infrastructure.RepositoryBase<Model.Entitites.Employee>, Contracts.IEmployeeRepository
+    public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
         /// <summary>
-        /// Get Employee entity by Id
+        ///     Get Employee entity by id
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public Model.Entitites.Employee GetById(long Id)
+        public Employee GetById(long id)
         {
-            return base.GetById(Id, Model.Enum.PersonType.Employee);
+            return base.GetById(id, PersonType.Employee);
         }
 
         /// <summary>
-        /// Get All Employee entities
+        ///     Get All Employee entities
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Model.Entitites.Employee> GetAll()
+        public IEnumerable<Employee> GetAll()
         {
-            return base.GetAll(Model.Enum.PersonType.Employee);
+            return base.GetAll(PersonType.Employee);
         }
 
         /// <summary>
-        /// Save Employee entity :
-        ///     If Employee.Id is zero a new Employee record will be created
-        ///     If Employee.Id is not zero an existing Employee record will be updated
+        ///     Save Employee entity :
+        ///     If Employee.id is zero a new Employee record will be created
+        ///     If Employee.id is not zero an existing Employee record will be updated
         /// </summary>
         /// <param name="entity"></param>
-        public override void Save(Model.Entitites.Employee entity)
+        public override void Save(Employee entity)
         {
             var sql = new StringBuilder();
 
             if (entity.Id == 0)
             {
                 //Generate SQL to create new record
-                sql.Append("INSERT INTO dbo.Employees (FirstName, LastName, DateOfBirth, Region, Department, Branch, HireDate, ApprovedOvertime, CreatedOn, LastModifiedOn, IsDeleted) ");
-                sql.Append(string.Format("VALUES ('{0}', '{1}', '{2}', '{3}', , '{4}', '{5}', '{6}', {7}, GETDATE(), GETDATE(), 0)", entity.FirstName,
-                                                                                                                                entity.LastName,
-                                                                                                                                entity.DateOfBirth.ToShortDateString(),
-                                                                                                                                entity.Region,
-                                                                                                                                entity.Department,
-                                                                                                                                entity.Branch,
-                                                                                                                                entity.HireDate.ToShortDateString(),
-                                                                                                                                entity.ApprovedOvertime ? '1' : '0'));
-
+                sql.Append(
+                    "INSERT INTO dbo.Employees (FirstName, LastName, DateOfBirth, Region, Department, Branch, HireDate, ApprovedOvertime, CreatedOn, LastModifiedOn, IsDeleted) ");
+                sql.Append(
+                    string.Format(
+                        "VALUES ('{0}', '{1}', '{2}', '{3}', , '{4}', '{5}', '{6}', {7}, GETDATE(), GETDATE(), 0)",
+                        entity.FirstName,
+                        entity.LastName,
+                        entity.DateOfBirth.ToShortDateString(),
+                        entity.Region,
+                        entity.Department,
+                        entity.Branch,
+                        entity.HireDate.ToShortDateString(),
+                        entity.ApprovedOvertime ? '1' : '0'));
             }
             else
             {
@@ -67,22 +72,22 @@ namespace AddressBook.Data.Repositories
                 sql.Append(string.Format("HireDate = '{0}', ", entity.HireDate.ToShortDateString()));
                 sql.Append(string.Format("ApprovedOvertime = {0}, ", entity.ApprovedOvertime ? '1' : '0'));
                 sql.Append("LastModifiedOn = GETDATE() ");
-                sql.Append(string.Format("WHERE Id = ", entity.Id.ToString()));
+                sql.Append(string.Format("WHERE id = {0}", entity.Id));
             }
 
-            Lib.Extenstions.SqlExtensions.CommitTransaction(sql.ToString());
+            SqlExtensions.CommitTransaction(sql.ToString());
         }
 
         /// <summary>
-        /// Delete Employee entity by Id :
+        ///     Delete Employee entity by id :
         ///     The IsDeleted record is set to 1; records are not actually deleted from the database
         /// </summary>
-        /// <param name="Id"></param>
-        public override void Delete(long Id)
+        /// <param name="id"></param>
+        public override void Delete(long id)
         {
-            var sql = string.Format("UPDATE dbo.Employees SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE Id = {0}", Id.ToString());
+            var sql = string.Format("UPDATE dbo.Employees SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE id = {0}", id);
 
-            Lib.Extenstions.SqlExtensions.CommitTransaction(sql);
+            SqlExtensions.CommitTransaction(sql);
         }
     }
 }
