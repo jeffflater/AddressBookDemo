@@ -13,7 +13,7 @@
                 debugger;
             }
         });
-    }
+    };
     this.Post = function (model, callback) {
         $.ajax({
             type: 'POST',
@@ -29,7 +29,22 @@
                 debugger;
             }
         });
-    }
+    };
+    this.Delete = function (id, callback) {
+        $.ajax({
+            type: 'DELETE',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/customer/" + id,
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    };
 }
 
 function EmployeeController() {
@@ -47,7 +62,7 @@ function EmployeeController() {
                 debugger;
             }
         });
-    }
+    };
     this.Post = function (model, callback) {
         $.ajax({
             type: 'POST',
@@ -63,7 +78,22 @@ function EmployeeController() {
                 debugger;
             }
         });
-    }
+    };
+    this.Delte = function (id, callback) {
+        $.ajax({
+            type: 'DELETE',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/employee/" + id,
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    };
 }
 
 function ManagerController() {
@@ -81,7 +111,7 @@ function ManagerController() {
                 debugger;
             }
         });
-    }
+    };
     this.Post = function (model, callback) {
         $.ajax({
             type: 'POST',
@@ -97,7 +127,22 @@ function ManagerController() {
                 debugger;
             }
         });
-    }
+    };
+    this.Delte = function (id, callback) {
+        $.ajax({
+            type: 'DELETE',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/manager/" + id,
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    };
 }
 
 function SalesPersonController() {
@@ -115,7 +160,7 @@ function SalesPersonController() {
                 debugger;
             }
         });
-    }
+    };
     this.Post = function (model, callback) {
         $.ajax({
             type: 'POST',
@@ -131,7 +176,22 @@ function SalesPersonController() {
                 debugger;
             }
         });
-    }
+    };
+    this.Delete = function (id, callback) {
+        $.ajax({
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: "/api/salesperson/" + id,
+            "sAjaxDataProp": "data.inner",
+            success: function (data) {
+                callback.apply(this, [data]);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                debugger;
+            }
+        });
+    };
 }
 
 function PeopleController() {
@@ -150,5 +210,5 @@ function PeopleController() {
                 debugger;
             }
         });
-    }
+    };
 }

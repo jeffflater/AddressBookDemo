@@ -18,6 +18,6 @@ D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.Net4.
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.xml
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.xml
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.csprojResolveAssemblyReference.cache
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.csprojResolveAssemblyReference.cache

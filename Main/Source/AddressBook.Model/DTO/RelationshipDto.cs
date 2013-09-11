@@ -7,20 +7,9 @@ namespace AddressBook.Model.DTO
     /// </summary>
     public class RelationshipDto
     {
-        public long ParentId { get; set; }
-        public PersonType ParentPersonType { get; set; }
-
-        public long ChildId { get; set; }
-        public PersonType ChildPersonType { get; set; }
-
-        public string ChildFirstName { get; set; }
-        public string ChildLastName { get; set; }
-
-        public string ChildFullName
-        {
-            get { return string.Format("{0}, {1}", ChildLastName, ChildFirstName); }
-        }
-
+        public long Id { get; set; }
+        public PersonType PersonType { get; set; }
+        public string FullName { get; set; }
         public int Distance { get; set; }
     }
 }

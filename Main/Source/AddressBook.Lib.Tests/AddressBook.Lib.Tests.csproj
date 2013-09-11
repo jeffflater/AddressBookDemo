@@ -60,7 +60,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="DTO\CustomerDtoTest.cs" />
+    <Compile Include="DTO\EmployeeDtoTest.cs" />
+    <Compile Include="DTO\ManagerDtoTest.cs" />
+    <Compile Include="DTO\PersonDtoTest.cs" />
+    <Compile Include="DTO\RelationshipDtoTest.cs" />
+    <Compile Include="DTO\SalesPersonDtoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CustomerRepositoryTest.cs" />
+    <Compile Include="Repository\EmployeeRepositoryTest.cs" />
+    <Compile Include="Repository\ManagerRepositoryTest.cs" />
+    <Compile Include="Repository\RelationshipRepositoryTest.cs" />
+    <Compile Include="Repository\SalesPersonRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -84,6 +95,7 @@
       <Name>AddressBook.Web</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

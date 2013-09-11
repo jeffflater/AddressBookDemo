@@ -3,6 +3,7 @@ using System.Web.Http;
 using AddressBook.Data.Repositories;
 using AddressBook.Model.DTO;
 using AddressBook.Model.Entitites;
+using AddressBook.Model.Enum;
 using AutoMapper;
 
 namespace AddressBook.Web.Controllers
@@ -14,20 +15,60 @@ namespace AddressBook.Web.Controllers
         private static readonly ManagerRepository ManagerRepository = new ManagerRepository();
         private static readonly SalesPersonRepository SalesPersonRepository = new SalesPersonRepository();
 
+        /// <summary>
+        ///     Get People
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<PersonDto> Get()
         {
             var people = new List<PersonDto>();
 
-            var customers = Mapper.DynamicMap<IEnumerable<Customer>, List<PersonDto>>(CustomerRepository.GetAll());
+            //Customers
+            Mapper.CreateMap<Customer, PersonDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.DateOfBirth))
+                .ForMember(dest => dest.PersonType, opt => opt.UseValue(PersonType.Customer));
+
+            var customers = Mapper.Map<IEnumerable<Customer>, List<PersonDto>>(CustomerRepository.GetAll());
+
             people.AddRange(customers);
 
-            var employees = Mapper.DynamicMap<IEnumerable<Employee>, List<PersonDto>>(EmployeeRepository.GetAll());
+            //Employees
+            Mapper.CreateMap<Employee, PersonDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.DateOfBirth))
+                .ForMember(dest => dest.PersonType, opt => opt.UseValue(PersonType.Employee));
+
+            var employees = Mapper.Map<IEnumerable<Employee>, List<PersonDto>>(EmployeeRepository.GetAll());
+
             people.AddRange(employees);
 
-            var managers = Mapper.DynamicMap<IEnumerable<Manager>, List<PersonDto>>(ManagerRepository.GetAll());
+            //Managers
+            Mapper.CreateMap<Manager, PersonDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.DateOfBirth))
+                .ForMember(dest => dest.PersonType, opt => opt.UseValue(PersonType.Manager));
+
+            var managers = Mapper.Map<IEnumerable<Manager>, List<PersonDto>>(ManagerRepository.GetAll());
+
             people.AddRange(managers);
 
-            var salesPeople = Mapper.DynamicMap<IEnumerable<SalesPerson>, List<PersonDto>>(SalesPersonRepository.GetAll());
+            //Sales People
+            Mapper.CreateMap<SalesPerson, PersonDto>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName))
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName))
+                .ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.DateOfBirth))
+                .ForMember(dest => dest.PersonType, opt => opt.UseValue(PersonType.SalesPerson));
+
+            var salesPeople = Mapper.Map<IEnumerable<SalesPerson>, List<PersonDto>>(SalesPersonRepository.GetAll());
+            
             people.AddRange(salesPeople);
 
             return people;

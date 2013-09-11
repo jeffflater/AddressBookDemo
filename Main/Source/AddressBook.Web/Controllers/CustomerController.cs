@@ -10,6 +10,11 @@ namespace AddressBook.Web.Controllers
     {
         private static readonly CustomerRepository Repository = new CustomerRepository();
 
+        /// <summary>
+        ///     Get Customer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public CustomerDto Get(long id)
         {
             var customer = Mapper.DynamicMap<Customer, CustomerDto>(Repository.GetById(id));
@@ -17,11 +22,19 @@ namespace AddressBook.Web.Controllers
             return customer;
         }
 
+        /// <summary>
+        ///     Save Customer
+        /// </summary>
+        /// <param name="customer"></param>
         public void Post(Customer customer)
         {
             Repository.Save(customer);
         }
 
+        /// <summary>
+        ///     Delete Customer
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(long id)
         {
             Repository.Delete(id);

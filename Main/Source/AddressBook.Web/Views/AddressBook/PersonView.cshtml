@@ -3,7 +3,10 @@
 }
 <script>
     function RenderPersonView(id, personType) {
-      
+       
+        _personId = id;
+        _personTypeId = personType;
+
         switch (personType) {
             case 1:
                 var customerController = new CustomerController();

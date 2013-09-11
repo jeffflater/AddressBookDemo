@@ -8,6 +8,11 @@ namespace AddressBook.Model.Entitites.Relationship
     /// </summary>
     public class Leaf : Entity
     {
+        public Leaf()
+        {
+            
+        }
+
         /// <summary>
         ///     Constructor used to create a new instance of Leaf with distance
         /// </summary>
