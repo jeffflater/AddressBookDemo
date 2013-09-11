@@ -31,9 +31,7 @@ namespace AddressBook.Web.Controllers
                 .ForMember(dest => dest.FullName, opt => opt.Ignore())
                 .ForMember(dest => dest.Distance, opt => opt.MapFrom(src => src.Distance));
 
-            var relationships =
-                Mapper.Map<IEnumerable<Leaf>, List<RelationshipDto>>(RelationshipRepository.GetAll(id,
-                    (PersonType) typeId));
+            var relationships = Mapper.Map<IEnumerable<Leaf>, List<RelationshipDto>>(RelationshipRepository.GetAll(id, (PersonType) typeId));
 
             foreach (RelationshipDto relationshipDto in relationships)
             {

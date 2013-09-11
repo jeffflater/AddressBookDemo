@@ -8,7 +8,7 @@ namespace AddressBook.Web.Controllers
 {
     public class CustomerController : ApiController
     {
-        private static readonly CustomerRepository Repository = new CustomerRepository();
+        private static readonly CustomerRepository CustomerRepository = new CustomerRepository();
 
         /// <summary>
         ///     Get Customer
@@ -17,7 +17,7 @@ namespace AddressBook.Web.Controllers
         /// <returns></returns>
         public CustomerDto Get(long id)
         {
-            var customer = Mapper.DynamicMap<Customer, CustomerDto>(Repository.GetById(id));
+            var customer = Mapper.DynamicMap<Customer, CustomerDto>(CustomerRepository.GetById(id));
 
             return customer;
         }
@@ -28,7 +28,7 @@ namespace AddressBook.Web.Controllers
         /// <param name="customer"></param>
         public void Post(Customer customer)
         {
-            Repository.Save(customer);
+            CustomerRepository.Save(customer);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AddressBook.Web.Controllers
         /// <param name="id"></param>
         public void Delete(long id)
         {
-            Repository.Delete(id);
+            CustomerRepository.Delete(id);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace AddressBook.Web.Controllers
 {
     public class ManagerController : ApiController
     {
-        private static readonly ManagerRepository Repository = new ManagerRepository();
+        private static readonly ManagerRepository ManagerRepository = new ManagerRepository();
 
         /// <summary>
         ///     Get Manager
@@ -17,7 +17,7 @@ namespace AddressBook.Web.Controllers
         /// <returns></returns>
         public ManagerDto Get(long id)
         {
-            var manager = Mapper.DynamicMap<Manager, ManagerDto>(Repository.GetById(id));
+            var manager = Mapper.DynamicMap<Manager, ManagerDto>(ManagerRepository.GetById(id));
 
             return manager;
         }
@@ -28,7 +28,7 @@ namespace AddressBook.Web.Controllers
         /// <param name="manager"></param>
         public void Post(Manager manager)
         {
-            Repository.Save(manager);
+            ManagerRepository.Save(manager);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AddressBook.Web.Controllers
         /// <param name="id"></param>
         public void Delete(long id)
         {
-            Repository.Delete(id);
+            ManagerRepository.Delete(id);
         }
     }
 }
