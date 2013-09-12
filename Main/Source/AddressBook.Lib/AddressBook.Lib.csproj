@@ -39,6 +39,9 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -49,7 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extenstions\SqlExtensions.cs" />
+    <Compile Include="BLL\Contracts\IRelationshipBll.cs" />
+    <Compile Include="BLL\Contracts\ICustomerBll.cs" />
+    <Compile Include="BLL\Contracts\IEmployeeBll.cs" />
+    <Compile Include="BLL\Contracts\IManagerBll.cs" />
+    <Compile Include="BLL\Contracts\ISalesPersonBll.cs" />
+    <Compile Include="BLL\CustomerBll.cs" />
+    <Compile Include="BLL\EmployeeBll.cs" />
+    <Compile Include="BLL\ManagerBll.cs" />
+    <Compile Include="BLL\RelationshipBll.cs" />
+    <Compile Include="BLL\SalesPersonBll.cs" />
+    <Compile Include="DAL\AdoProvider.cs" />
+    <Compile Include="Infrastructure\IBll.cs" />
+    <Compile Include="Infrastructure\BllBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -67,6 +82,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AddressBook.Model\AddressBook.Model.csproj">
+      <Project>{4CEB7867-B6A4-4D2D-9156-0FDE5C5F4767}</Project>
+      <Name>AddressBook.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

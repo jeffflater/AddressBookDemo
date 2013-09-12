@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using AddressBook.Data.Infrastructure;
 using AddressBook.Data.Repositories.Contracts;
-using AddressBook.Lib.Extenstions;
+using AddressBook.Lib.BLL;
 using AddressBook.Model.Entitites;
 using AddressBook.Model.Enum;
 
@@ -13,23 +12,25 @@ namespace AddressBook.Data.Repositories
     /// </summary>
     public class SalesPersonRepository : RepositoryBase<SalesPerson>, ISalesPersonRepository
     {
+        private static readonly SalesPersonBll SalesPersonBll = new SalesPersonBll();
+
         /// <summary>
         ///     Get SalesPerson entity by id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SalesPerson GetById(long id)
+        public override SalesPerson GetById(long id)
         {
-            return base.GetById(id, PersonType.SalesPerson);
+            return SalesPersonBll.GetById(id);
         }
 
         /// <summary>
         ///     Get All SalesPerson entities
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<SalesPerson> GetAll()
+        public override IEnumerable<SalesPerson> GetAll()
         {
-            return base.GetAll(PersonType.SalesPerson);
+            return SalesPersonBll.GetAll();
         }
 
         /// <summary>
@@ -40,42 +41,7 @@ namespace AddressBook.Data.Repositories
         /// <param name="entity"></param>
         public override void Save(SalesPerson entity)
         {
-            var sql = new StringBuilder();
-
-            if (entity.Id == 0)
-            {
-                //Generate SQL to create new record
-                sql.Append(
-                    "INSERT INTO dbo.SalesPeople (FirstName, LastName, DateOfBirth, Region, Department, Branch, HireDate, WeeklySalesGoal, CreatedOn, LastModifiedOn, IsDeleted) ");
-                sql.Append(
-                    string.Format(
-                        "VALUES ('{0}', '{1}', '{2}', '{3}', , '{4}', '{5}', '{6}', {7}, GETDATE(), GETDATE(), 0)",
-                        entity.FirstName,
-                        entity.LastName,
-                        entity.DateOfBirth.ToShortDateString(),
-                        entity.Region,
-                        entity.Department,
-                        entity.Branch,
-                        entity.HireDate.ToShortDateString(),
-                        entity.WeeklySalesGoal));
-            }
-            else
-            {
-                //Generate SQL to update existing record
-                sql.Append("UPDATE dbo.SalesPeople ");
-                sql.Append(string.Format("SET FirstName = '{0}', ", entity.FirstName));
-                sql.Append(string.Format("LastName = '{0}', ", entity.LastName));
-                sql.Append(string.Format("DateOfBirth = '{0}', ", entity.DateOfBirth.ToShortDateString()));
-                sql.Append(string.Format("Region = '{0}', ", entity.Region));
-                sql.Append(string.Format("Department = {0}, ", entity.Department));
-                sql.Append(string.Format("Branch = '{0}', ", entity.Branch));
-                sql.Append(string.Format("HireDate = '{0}', ", entity.HireDate.ToShortDateString()));
-                sql.Append(string.Format("WeeklySalesGoal = {0}, ", entity.WeeklySalesGoal));
-                sql.Append("LastModifiedOn = GETDATE() ");
-                sql.Append(string.Format("WHERE id = {0}", entity.Id));
-            }
-
-            SqlExtensions.CommitTransaction(sql.ToString());
+            SalesPersonBll.Save(entity);
         }
 
         /// <summary>
@@ -85,10 +51,7 @@ namespace AddressBook.Data.Repositories
         /// <param name="id"></param>
         public override void Delete(long id)
         {
-            string sql =
-                string.Format("UPDATE dbo.Managers SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE id = {0}", id);
-
-            SqlExtensions.CommitTransaction(sql);
+            SalesPersonBll.Delete(id);
         }
     }
 }

@@ -13,11 +13,15 @@ D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4.config
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.dll.config
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Lib.pdb
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Model.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.Net4.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AddressBook.Model.pdb
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\AutoMapper.xml
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\log4net.xml
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\bin\Debug\Newtonsoft.Json.xml
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.csprojResolveAssemblyReference.cache
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Lib\obj\Debug\AddressBook.Lib.pdb

@@ -16,11 +16,6 @@ namespace AddressBook.Web.Controllers
             return PartialView("PeopleView");
         }
 
-        public ActionResult RelationshipPartialView()
-        {
-            return PartialView("RelationshipView");
-        }
-
         public ActionResult PersonPartialView()
         {
             return PartialView("PersonView");

@@ -1,8 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AddressBook.Lib.Extenstions;
-using AddressBook.Model.Enum;
 
 namespace AddressBook.Data.Infrastructure
 {
@@ -29,62 +25,23 @@ namespace AddressBook.Data.Infrastructure
         }
 
         /// <summary>
-        ///     Get multiple models by id
+        ///     Get by id
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="personType"></param>
         /// <returns></returns>
-        public virtual T GetById(long id, PersonType personType)
+        public virtual T GetById(long id)
         {
-            var sql = new StringBuilder();
-
-            //NOTE: Views only return records that have not been flagged as deleted.
-            switch (personType)
-            {
-                case PersonType.Customer:
-                    sql.Append(string.Format("SELECT * FROM dbo.vwCustomers WHERE id = {0}", id));
-                    break;
-                case PersonType.Employee:
-                    sql.Append(string.Format("SELECT * FROM dbo.vwEmployees WHERE id = {0}", id));
-                    break;
-                case PersonType.Manager:
-                    sql.Append(string.Format("SELECT * FROM dbo.vwManagers WHERE id = {0}", id));
-                    break;
-                case PersonType.SalesPerson:
-                    sql.Append(string.Format("SELECT * FROM dbo.vwSalesPeople WHERE id = {0}", id));
-                    break;
-            }
-
-            return SqlExtensions.QueryTransaction<T>(sql.ToString()).FirstOrDefault();
+            return null;
         }
 
         /// <summary>
-        ///     Get multiple models by id
+        ///     Get all
         /// </summary>
-        /// <param name="personType"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        public virtual IEnumerable<T> GetAll(PersonType personType)
+        public virtual IEnumerable<T> GetAll()
         {
-            var sql = new StringBuilder();
-
-            //NOTE: Views only return records that have not been flagged as deleted.
-            switch (personType)
-            {
-                case PersonType.Customer:
-                    sql.Append("SELECT * FROM dbo.vwCustomers");
-                    break;
-                case PersonType.Employee:
-                    sql.Append("SELECT * FROM dbo.vwEmployees");
-                    break;
-                case PersonType.Manager:
-                    sql.Append("SELECT * FROM dbo.vwManagers");
-                    break;
-                case PersonType.SalesPerson:
-                    sql.Append("SELECT * FROM dbo.vwSalesPeople");
-                    break;
-            }
-
-            return SqlExtensions.QueryTransaction<T>(sql.ToString());
+            return null;
         }
     }
 }

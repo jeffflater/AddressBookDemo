@@ -5,12 +5,13 @@ using System.Data.SqlClient;
 using AddressBook.Lib.Properties;
 using AutoMapper;
 
-namespace AddressBook.Lib.Extenstions
+namespace AddressBook.Lib.DAL
 {
     /// <summary>
-    ///     SQL Extensions - ADO.NET
+    ///     ADO.NET Provider
+    ///     This is used to query and commit sql transactions
     /// </summary>
-    public static class SqlExtensions
+    public static class AdoProvider
     {
         /// <summary>
         ///     Executes SQL statement and returns a result
