@@ -46,6 +46,7 @@
     <Compile Include="DTO\ManagerDto.cs" />
     <Compile Include="DTO\PersonDto.cs" />
     <Compile Include="DTO\RelationshipDto.cs" />
+    <Compile Include="DTO\RelationshipItemDto.cs" />
     <Compile Include="DTO\SalesPersonDto.cs" />
     <Compile Include="Entitites\Abstract\Personnel.cs" />
     <Compile Include="Entitites\Abstract\Entity.cs" />

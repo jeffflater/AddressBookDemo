@@ -27,10 +27,13 @@ namespace AddressBook.Data.Repositories
         /// <summary>
         ///     Save parent/child relationship
         /// </summary>
-        /// <param name="tree"></param>
-        public void Save(Tree tree)
+        /// <param name="parentId"></param>
+        /// <param name="parentPersonType"></param>
+        /// <param name="childId"></param>
+        /// <param name="childPersonType"></param>
+        public void Save(long parentId, PersonType parentPersonType, long childId, PersonType childPersonType)
         {
-            RelationshipBll.Save(tree);
+            RelationshipBll.Save(parentId, parentPersonType, childId, childPersonType);
         }
 
         /// <summary>

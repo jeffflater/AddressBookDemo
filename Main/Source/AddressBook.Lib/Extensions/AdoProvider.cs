@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using AddressBook.Lib.Properties;
 using AutoMapper;
 
-namespace AddressBook.Lib.DAL
+namespace AddressBook.Lib.Extensions
 {
     /// <summary>
     ///     ADO.NET Provider

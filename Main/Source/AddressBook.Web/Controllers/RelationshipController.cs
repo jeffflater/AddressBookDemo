@@ -77,10 +77,13 @@ namespace AddressBook.Web.Controllers
         /// <summary>
         ///     Save Relationship
         /// </summary>
-        /// <param name="tree"></param>
-        public void Post(Tree tree)
+        /// <param name="relationshipItemDto"></param>
+        public void Post(RelationshipItemDto relationshipItemDto)
         {
-            RelationshipRepository.Save(tree);
+            RelationshipRepository.Save(relationshipItemDto.ParentId,
+                                            relationshipItemDto.ParentPersonType,
+                                            relationshipItemDto.ChildId,
+                                            relationshipItemDto.ChildPersonType);
         }
 
         /// <summary>

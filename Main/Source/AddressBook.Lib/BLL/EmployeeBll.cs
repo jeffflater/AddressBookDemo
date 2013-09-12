@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using AddressBook.Lib.BLL.Contracts;
+using AddressBook.Lib.Extensions;
 using AddressBook.Lib.Infrastructure;
 using AddressBook.Model.Entitites;
 using AddressBook.Model.Enum;
-using AddressBook.Lib.DAL;
 
 namespace AddressBook.Lib.BLL
 {
@@ -85,7 +82,8 @@ namespace AddressBook.Lib.BLL
         /// <param name="id"></param>
         public override void Delete(long id)
         {
-            var sql = string.Format("UPDATE dbo.Employees SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE id = {0}", id);
+            var sql =
+                string.Format("UPDATE dbo.Employees SET IsDeleted = 1, LastModifiedOn = GETDATE() WHERE id = {0}", id);
 
             AdoProvider.CommitTransaction(sql);
         }

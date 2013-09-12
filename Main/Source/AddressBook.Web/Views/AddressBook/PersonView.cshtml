@@ -2,41 +2,77 @@
     Layout = null;
 }
 <script>
+
+    var oTableRelationshipView;
+
+    head.ready(function() {
+        $(function() {
+
+            var peopleController = new PeopleController();
+            peopleController.GetAll(function(data) {
+                var cbPerson1 = $("#cbPerson1");
+                for (var i = 0; i < data.length; i++) {
+                    cbPerson1.append(new Option(data[i].FullName + ' - ' + FormatPersonType(data[i].PersonType), data[i].Id + '|' + data[i].PersonType));
+                }
+            });
+
+            oTableRelationshipView = $('#relationshipView');
+
+        });
+    });
+
+    function SaveRelationship() {
+
+        var person = $("#cbPerson1").val();
+        var childId = person.split('|')[0];
+        var childPersonType = person.split('|')[1];
+
+        var relationshipItem = new RelationshipItem(_personId,
+            _personTypeId,
+            childId,
+            childPersonType);
+        var relationshipController = new RelationshipController();
+        relationshipController.Post(relationshipItem, function(data) {
+            FetchPersonRelationshpView();
+        });
+    }
+
     function RenderPersonView(id, personType) {
-       
+
         _personId = id;
         _personTypeId = personType;
 
-        switch (personType) {
-            case 1:
-                var customerController = new CustomerController();
-                customerController.Get(id, function (data) {
-                    RenderPersonDetailView(data, personType);
-                });
-                break;
-            case 2:
-                var employeeController = new EmployeeController();
-                employeeController.Get(id, function (data) {
-                    RenderPersonDetailView(data, personType);
-                });
-                break;
-            case 3:
-                var managerController = new ManagerController();
-                managerController.Get(id, function (data) {
-                    RenderPersonDetailView(data, personType);
-                });
-                break;
-            case 4:
-                var salesPersonController = new SalesPersonController();
-                salesPersonController.Get(id, function (data) {
-                    RenderPersonDetailView(data, personType);
-                });
-                break;
+        switch (_personTypeId) {
+        case 1:
+            var customerController = new CustomerController();
+            customerController.Get(_personId, function(data) {
+                RenderPersonDetailView(data, _personTypeId);
+            });
+            break;
+        case 2:
+            var employeeController = new EmployeeController();
+            employeeController.Get(_personId, function(data) {
+                RenderPersonDetailView(data, _personTypeId);
+            });
+            break;
+        case 3:
+            var managerController = new ManagerController();
+            managerController.Get(_personId, function(data) {
+                RenderPersonDetailView(data, _personTypeId);
+            });
+            break;
+        case 4:
+            var salesPersonController = new SalesPersonController();
+            salesPersonController.Get(_personId, function(data) {
+                RenderPersonDetailView(data, _personTypeId);
+            });
+            break;
         }
+
+        FetchPersonRelationshpView();
     }
 
-    function RenderPersonDetailView(data, personType)
-    {
+    function RenderPersonDetailView(data, personType) {
         RenderMessage(data.FullName + " has been selected.");
 
         $('#tbFirstName').val(data.FirstName);
@@ -45,49 +81,129 @@
 
         var details = '';
         switch (personType) {
-            case 1:
-                details += 'Gender: ' + data.Gender + "<br>";
-                details += 'Age: ' + data.Age + "<br>";
-                details += 'Race: ' + data.Race + "<br>";
-                details += 'Education: ' + data.Education + "<br>";
-                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
-                break;
-            case 2:
-                details += 'Department: ' + data.Department + "<br>";
-                details += 'Branch: ' + data.Branch + "<br>";
-                details += 'HireDate: ' + data.HireDate + "<br>";
-                details += 'ApprovedOvertime: ' + data.ApprovedOvertime + "<br>";
-                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
-                break;
-            case 3:
-                details += 'Department: ' + data.Department + "<br>";
-                details += 'Branch: ' + data.Branch + "<br>";
-                details += 'HireDate: ' + data.HireDate + "<br>";
-                details += 'SpendingLimit: ' + data.SpendingLimit + "<br>";
-                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
-                break;
-            case 4:
-                details += 'Department: ' + data.Department + "<br>";
-                details += 'Branch: ' + data.Branch + "<br>";
-                details += 'HireDate: ' + data.HireDate + "<br>";
-                details += 'WeeklySalesGoal: ' + data.WeeklySalesGoal + "<br>";
-                details += 'CreatedOn: ' + data.CreatedOn + "<br>";
-                details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
-                break;
+        case 1:
+            details += 'Gender: ' + data.Gender + "<br>";
+            details += 'Age: ' + data.Age + "<br>";
+            details += 'Race: ' + data.Race + "<br>";
+            details += 'Education: ' + data.Education + "<br>";
+            details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+            details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
+            break;
+        case 2:
+            details += 'Department: ' + data.Department + "<br>";
+            details += 'Branch: ' + data.Branch + "<br>";
+            details += 'HireDate: ' + data.HireDate + "<br>";
+            details += 'ApprovedOvertime: ' + data.ApprovedOvertime + "<br>";
+            details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+            details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
+            break;
+        case 3:
+            details += 'Department: ' + data.Department + "<br>";
+            details += 'Branch: ' + data.Branch + "<br>";
+            details += 'HireDate: ' + data.HireDate + "<br>";
+            details += 'SpendingLimit: ' + data.SpendingLimit + "<br>";
+            details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+            details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
+            break;
+        case 4:
+            details += 'Department: ' + data.Department + "<br>";
+            details += 'Branch: ' + data.Branch + "<br>";
+            details += 'HireDate: ' + data.HireDate + "<br>";
+            details += 'WeeklySalesGoal: ' + data.WeeklySalesGoal + "<br>";
+            details += 'CreatedOn: ' + data.CreatedOn + "<br>";
+            details += 'LastModifiedOn: ' + data.LastModifiedOn + "<br>";
+            break;
         }
 
         $('#additionalDetails').html(details);
     }
 
-    function DeletePersonConfirm()
-    {
+    function FetchPersonRelationshpView() {
+        var relationshipController = new RelationshipController();
+        relationshipController.GetAll(_personId, _personTypeId, function(data) {
+            RenderPersonRelationshipView(data, _personTypeId);
+        });
+    }
+
+    function RenderPersonRelationshipView(data, personType) {
+
+        oTableRelationshipView.dataTable().fnDestroy();
+
+        if (data != '') {
+
+            oTableRelationshipView = oTableRelationshipView.dataTable({
+                "aaData": data,
+                "bProcessing": false,
+                "bServerSide": false,
+                "bAutoWidth": true,
+                "bFilter": true,
+                "bInfo": true,
+                "bSearchable": true,
+                "bPaginate": true,
+                "bSortCellsTop": true,
+                "bRetrieve": false,
+                "bDestroy": true,
+                "oLanguage": {
+                    "sEmptyTable": "No data available."
+                },
+                "aoColumns": [
+                    { "mData": "Id" },
+                    { "mData": "FullName" },
+                    { "mData": "PersonType" },
+                    { "mData": "Distance" }
+                ],
+                "fnRowCallback": function(nRow, aData, iDisplayIndex) {
+                    var personType = FormatPersonType(aData.PersonType);
+                    $('td:eq(2)', nRow).html(personType);
+                    return nRow;
+                },
+                "aoColumnDefs": [
+                    { "sTitle": "ID", "aTargets": [0] },
+                    { "sTitle": "Full Name", "aTargets": [1] },
+                    { "sTitle": "Person Type", "aTargets": [2] }
+                ]
+            });
+
+        }
+    }
+
+    function DeletePersonConfirm() {
         $('#deleteRelationshipModal').modal('show');
     }
 
-    function DeletePerson()
+    function DeletePerson() {
+
+        switch (_personTypeId) {
+        case 1:
+            var customerController = new CustomerController();
+            customerController.Delete(_personId, function(data) {
+                DeletePersonResponse();
+            });
+            break;
+        case 2:
+            var employeeController = new EmployeeController();
+            employeeController.Delete(_personId, function(data) {
+                DeletePersonResponse();
+            });
+            break;
+        case 3:
+            var managerController = new ManagerController();
+            managerController.Delete(_personId, function(data) {
+                DeletePersonResponse();
+            });
+            break;
+        case 4:
+            var salesPersonController = new SalesPersonController();
+            salesPersonController.Delete(_personId, function(data) {
+                DeletePersonResponse();
+            });
+            break;
+        }
+
+
+    }
+
+    function DeletePersonResponse()
     {
         RenderMessage('Person has been deleted.');
         $('#deleteRelationshipModal').modal('hide');
@@ -95,7 +211,15 @@
         $('#tbLastName').val('');
         $('#tbDateOfBirth').val('');
         $('#additionalDetails').html('');
+        $('#cbPerson1')
+            .find('option')
+            .remove()
+            .end()
+        ;
+        oTableRelationshipView.dataTable().fnDestroy();
+        RenderPeopleView();
     }
+    
 
 </script>
 
@@ -116,6 +240,13 @@
     <div class="alert alert-warning" id="additionalDetails"></div>
 </form>
 
+<div class="form-group">
+    <label>Add New Relationship</label><br/>
+    <label for="cbPerson1">Person</label>
+    <select class="form-control" id="cbPerson1" class="input-sm">
+    </select>
+    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="SaveRelationship();">Add</button>
+</div>
 
 <table id="relationshipView" class="table table-striped table-bordered table-hover table-condensed">
 	<thead>
@@ -130,6 +261,7 @@
 	</tbody>
 </table>
 
+<hr/>
 <input id="btnDelete" type="button" value="Delete" class="btn btn-default" onclick="DeletePersonConfirm();" />
 <a data-toggle="modal" href="#personModal" class="btn btn-default pull-right">Edit</a>
 

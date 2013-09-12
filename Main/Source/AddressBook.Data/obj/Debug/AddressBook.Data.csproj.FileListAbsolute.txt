@@ -16,7 +16,6 @@ C:\Github\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AutoMapper.xml
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.csprojResolveAssemblyReference.cache
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.dll
 C:\Github\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.pdb
-D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.csprojResolveAssemblyReference.cache
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\log4.config
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Data.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Data.pdb
@@ -29,5 +28,6 @@ D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Lib
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AddressBook.Model.pdb
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\AutoMapper.xml
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.csprojResolveAssemblyReference.cache
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.dll
 D:\GitHub\AddressBookDemo\Main\Source\AddressBook.Data\obj\Debug\AddressBook.Data.pdb

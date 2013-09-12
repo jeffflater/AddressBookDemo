@@ -62,7 +62,7 @@
     <Compile Include="BLL\ManagerBll.cs" />
     <Compile Include="BLL\RelationshipBll.cs" />
     <Compile Include="BLL\SalesPersonBll.cs" />
-    <Compile Include="DAL\AdoProvider.cs" />
+    <Compile Include="Extensions\AdoProvider.cs" />
     <Compile Include="Infrastructure\IBll.cs" />
     <Compile Include="Infrastructure\BllBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

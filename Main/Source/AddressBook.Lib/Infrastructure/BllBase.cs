@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AddressBook.Lib.DAL;
+using AddressBook.Lib.Extensions;
 using AddressBook.Model.Enum;
 
 namespace AddressBook.Lib.Infrastructure

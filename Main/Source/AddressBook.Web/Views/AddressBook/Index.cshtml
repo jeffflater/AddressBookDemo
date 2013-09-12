@@ -1,10 +1,29 @@
 ﻿<script>
-    var _personId;
-    var _personTypeId;
+     var _personId;
+     var _personTypeId;
 
-    function RenderMessage(msg) {
-        $('#appMessage').html(msg);
-    }
+     function RenderMessage(msg) {
+         $('#appMessage').html(msg);
+     }
+
+     function FormatPersonType(personType) {
+         var typeName = '';
+         switch (personType) {
+             case 1:
+                 typeName = 'Customer';
+                 break;
+             case 2:
+                 typeName = 'Employee';
+                 break;
+             case 3:
+                 typeName = 'Manager';
+                 break;
+             case 4:
+                 typeName = 'SalesPerson';
+                 break;
+         }
+         return typeName;
+     }
  </script>
 
 <div class="alert alert-info" id="appMessage">Please continue by choosing a person from the right hand grid. </div>

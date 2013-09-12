@@ -3,19 +3,19 @@
 }
 
 <script>
-    var oTable;
+    var oTablePeopleView;
 
     head.ready(function () {
         $(function () {
 
-            oTable = $('#peopleView');
+            oTablePeopleView = $('#peopleView');
 
             RenderPeopleView();
 
             $("#peopleView tbody").click(function (event) {
 
                 var trNode = $(event.target).parents('tr')[0];
-                var data = oTable.fnGetData(trNode);
+                var data = oTablePeopleView.fnGetData(trNode);
                 
                 RenderPersonView(data.Id, data.PersonType);
 
@@ -26,13 +26,13 @@
 
     function RenderPeopleView() {
 
-        oTable.dataTable().fnDestroy();
+        oTablePeopleView.dataTable().fnDestroy();
 
         var peopleController = new PeopleController();
 
         peopleController.GetAll(function (data) {
 
-            oTable = oTable.dataTable({
+            oTablePeopleView = oTablePeopleView.dataTable({
                 "aaData": data,
                 "bProcessing": false,
                 "bServerSide": false,
@@ -48,34 +48,20 @@
                     "sEmptyTable": "No data available."
                 },
                 "aoColumns": [
-                        { "mData": "Id" },
-                        { "mData": "FullName" },
-                        { "mData": "PersonType" }
+                    { "mData": "Id" },
+                    { "mData": "FullName" },
+                    { "mData": "PersonType" }
 
                 ],
                 "fnRowCallback": function (nRow, aData, iDisplayIndex) {
-                    var personType;
-                    switch (aData.PersonType) {
-                        case 1:
-                            personType = 'Customer';
-                            break;
-                        case 2:
-                            personType = 'Employee';
-                            break;
-                        case 3:
-                            personType = 'Manager';
-                            break;
-                        case 4:
-                            personType = 'SalesPerson';
-                            break;
-                    }
+                    var personType = FormatPersonType(aData.PersonType);
                     $('td:eq(2)', nRow).html(personType);
                     return nRow;
                 },
                 "aoColumnDefs": [
-                        { "sTitle": "ID", "aTargets": [0] },
-                        { "sTitle": "Full Name", "aTargets": [1] },
-                        { "sTitle": "Person Type", "aTargets": [2] }
+                    { "sTitle": "ID", "aTargets": [0] },
+                    { "sTitle": "Full Name", "aTargets": [1] },
+                    { "sTitle": "Person Type", "aTargets": [2] }
                 ]
             });
 

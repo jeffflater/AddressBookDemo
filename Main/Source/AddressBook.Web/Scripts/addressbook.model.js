@@ -104,3 +104,16 @@ function SalesPerson(id,
 	return salesPerson;
 }
 
+function RelationshipItem(parentId,
+			                parentPersonType,
+			                childId,
+                            childPersonType) {
+    var relationshipItem = {
+        ParentId: parentId,
+        ParentPersonType: parentPersonType,
+        ChildId: childId,
+        ChildPersonType: childPersonType
+    };
+    return relationshipItem;
+}
+
