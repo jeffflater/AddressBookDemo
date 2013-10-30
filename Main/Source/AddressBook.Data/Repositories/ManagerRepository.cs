@@ -51,7 +51,7 @@ namespace AddressBook.Data.Repositories
                     "INSERT INTO dbo.Managers (FirstName, LastName, DateOfBirth, Region, Department, Branch, HireDate, SpendingLimit, CreatedOn, LastModifiedOn, IsDeleted) ");
                 sql.Append(
                     string.Format(
-                        "VALUES ('{0}', '{1}', '{2}', '{3}', , '{4}', '{5}', '{6}', {7}, GETDATE(), GETDATE(), 0)",
+                        "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', {7}, GETDATE(), GETDATE(), 0)",
                         entity.FirstName,
                         entity.LastName,
                         entity.DateOfBirth.ToShortDateString(),

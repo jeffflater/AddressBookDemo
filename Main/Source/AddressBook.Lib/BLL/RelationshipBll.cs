@@ -12,7 +12,7 @@ namespace AddressBook.Lib.BLL
 {
     public class RelationshipBll
     {
-        public static readonly List<Leaf> RelatedLeafs = new List<Leaf>();
+        public static List<Leaf> RelatedLeafs = new List<Leaf>();
         private static int _leafDistanceCounter;
 
         /// <summary>
@@ -22,6 +22,9 @@ namespace AddressBook.Lib.BLL
         /// <param name="trees"></param>
         public void TraverseTree(IEnumerable<Tree> trees)
         {
+            RelatedLeafs = new List<Leaf>();
+            _leafDistanceCounter = 0;
+
             while (true)
             {
                 _leafDistanceCounter += 1;

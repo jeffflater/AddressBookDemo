@@ -1,19 +1,72 @@
 ﻿<script>
 
-    function RenderPersonPopUpView() {
+     var _popupMode = 'new';
+
+     function RenderPersonPopUpView(type) {
+
+         _popupMode = type;
+
+        if (type == 'edit' && _personId != undefined && _personTypeId != undefined) {
+            
+            switch (_personTypeId) {
+                case 1:
+                    var customerController = new CustomerController();
+                    customerController.Get(_personId, function (data) {
+                        RenderEditPopUp(data, _personTypeId);
+                    });
+                    break;
+                case 2:
+                    var employeeController = new EmployeeController();
+                    employeeController.Get(_personId, function (data) {
+                        RenderEditPopUp(data, _personTypeId);
+                    });
+                    break;
+                case 3:
+                    var managerController = new ManagerController();
+                    managerController.Get(_personId, function (data) {
+                        RenderEditPopUp(data, _personTypeId);
+                    });
+                    break;
+                case 4:
+                    var salesPersonController = new SalesPersonController();
+                    salesPersonController.Get(_personId, function (data) {
+                        RenderEditPopUp(data, _personTypeId);
+                    });
+                    break;
+            }
+
+        } else {
+            RenderNewPopUp();
+        }
+        
+    }
+
+    function RenderEditPopUp(data, personTypeId)
+    {
+        $('#tbFirstName1').val(data.FirstName);
+        $('#tbLastName1').val(data.LastName);
+        $('#tbDateOfBirth1').val(data.DateOfBirth);
+    }
+    
+    function RenderNewPopUp()
+    {
         $('#tbFirstName1').val('');
-		$('#tbLastName1').val('');
-		$('#tbDateOfBirth1').val('');
+        $('#tbLastName1').val('');
+        $('#tbDateOfBirth1').val('');
     }
 
     function SavePerson() {
 
+        var personId = 0;
+        if (_popupMode == 'edit') {
+            personId = _personId;
+        }
         var personType = parseInt($('#cbPersonType1').val());
         
         switch (personType) {
             case 1:
                 var customerController = new CustomerController();
-                var customer = new Customer(0,
+                var customer = new Customer(personId,
 					                        $('#tbFirstName1').val(),
 					                        $('#tbLastName1').val(),
 					                        $('#tbDateOfBirth1').val(),
@@ -28,7 +81,7 @@
                 break;
             case 2:
                 var employeeController = new EmployeeController();
-                var employee = new Employee(0,
+                var employee = new Employee(personId,
 					                        $('#tbFirstName1').val(),
 					                        $('#tbLastName1').val(),
 					                        $('#tbDateOfBirth1').val(),
@@ -43,7 +96,7 @@
                 break;
             case 3:
                 var managerController = new ManagerController();
-                var manager = new Manager(0,
+                var manager = new Manager(personId,
 					                        $('#tbFirstName1').val(),
 					                        $('#tbLastName1').val(),
 					                        $('#tbDateOfBirth1').val(),
@@ -58,7 +111,7 @@
                 break;
             case 4:
                 var salesPersonController = new SalesPersonController();
-                var salesPerson = new SalesPerson(id,
+                var salesPerson = new SalesPerson(personId,
 						                            $('#tbFirstName1').val(),
 					                                $('#tbLastName1').val(),
 					                                $('#tbDateOfBirth1').val(),

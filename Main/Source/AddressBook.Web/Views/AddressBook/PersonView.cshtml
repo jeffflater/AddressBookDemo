@@ -75,6 +75,9 @@
     function RenderPersonDetailView(data, personType) {
         RenderMessage(data.FullName + " has been selected.");
 
+        $('#tbPersonID').val(_personId);
+        $('#tbPersonType').val(FormatPersonType(_personTypeId));
+
         $('#tbFirstName').val(data.FirstName);
         $('#tbLastName').val(data.LastName);
         $('#tbDateOfBirth').val(data.DateOfBirth);
@@ -203,10 +206,11 @@
 
     }
 
-    function DeletePersonResponse()
-    {
+    function DeletePersonResponse() {
         RenderMessage('Person has been deleted.');
         $('#deleteRelationshipModal').modal('hide');
+        $('#tbPersonID').val('');
+        $('#tbPersonType').val('');
         $('#tbFirstName').val('');
         $('#tbLastName').val('');
         $('#tbDateOfBirth').val('');
@@ -214,16 +218,29 @@
         $('#cbPerson1')
             .find('option')
             .remove()
-            .end()
-        ;
+            .end();
         oTableRelationshipView.dataTable().fnDestroy();
         RenderPeopleView();
+    }
+
+    function EditPersonPopUpView() {
+        RenderPersonPopUpView('edit');
+        $('#personModal').modal('show');
+        return false;
     }
     
 
 </script>
 
 <form role="form">
+    <div class="form-group">
+        <label for="tbPersonID">Person ID</label>
+        <input type="text" class="form-control" id="tbPersonID" placeholder="First Name" class="input-sm">
+    </div>
+    <div class="form-group">
+        <label for="tbPersonType">Person Type</label>
+        <input type="text" class="form-control" id="tbPersonType" placeholder="First Name" class="input-sm">
+    </div>
     <div class="form-group">
         <label for="tbFirstName">First Name</label>
         <input type="text" class="form-control" id="tbFirstName" placeholder="First Name" class="input-sm">
@@ -263,7 +280,7 @@
 
 <hr/>
 <input id="btnDelete" type="button" value="Delete" class="btn btn-default" onclick="DeletePersonConfirm();" />
-<a data-toggle="modal" href="#personModal" class="btn btn-default pull-right">Edit</a>
+<a data-toggle="modal" href="#personModal" class="btn btn-default pull-right" onclick="EditPersonPopUpView();">Edit</a>
 
 <div class="modal fade" id="deleteRelationshipModal" tabindex="-1" role="dialog" aria-labelledby="deleteRelationshipModal" aria-hidden="true">
 <div class="modal-dialog">

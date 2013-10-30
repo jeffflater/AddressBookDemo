@@ -66,11 +66,10 @@ namespace AddressBook.Data.Repositories
             //create new parent / child relationship
             if (treeSearcher == null)
             {
-                sql = new StringBuilder();
-
                 var leaf = new Leaf { Id = childId, PersonType = childPersonType };
                 leafs.Add(leaf);
 
+                sql.Clear();
                 sql.Append(
                     "INSERT INTO dbo.RelationshipTree (ParentId, ParentPersonType, ChildBranch, CreatedOn, LastModifiedOn, IsDeleted) ");
                 sql.Append(string.Format("VALUES({0}, {1}, '{2}', GETDATE(), GETDATE(), 0)", parentId,
@@ -83,28 +82,27 @@ namespace AddressBook.Data.Repositories
             //append child relation to existing child relationships
             if (treeSearcher != null)
             {
-                sql = new StringBuilder();
-
+                sql.Clear();
                 sql.Append(
                     string.Format(
-                        "SELECT ChildBranch FROM dbo.RelationshipTree WHERE ParentId = {0} AND ParentPersonType = {1}",
+                        "SELECT * FROM dbo.RelationshipTree WHERE ParentId = {0} AND ParentPersonType = {1}",
                         parentId, (int)parentPersonType));
 
-                var branchSearcher = AdoProvider.QueryTransaction<string>(sql.ToString()).FirstOrDefault();
-
-                if (branchSearcher != null)
+                var childTreeSearcher = AdoProvider.QueryTransaction<Tree>(sql.ToString()).FirstOrDefault();
+                
+                if (childTreeSearcher != null)
                 {
-                    leafs =
-                    JsonConvert.DeserializeObject<List<Leaf>>(branchSearcher.First().ToString(CultureInfo.InvariantCulture));
+                    leafs.AddRange(JsonConvert.DeserializeObject<List<Leaf>>(childTreeSearcher.ChildBranch.ToString()));
                 }
 
                 var leaf = new Leaf { Id = childId, PersonType = childPersonType };
                 leafs.Add(leaf);
 
+                sql.Clear();
                 sql.Append("UPDATE dbo.RelationshipTree ");
                 sql.Append(string.Format("SET ChildBranch = '{0}', ", JsonConvert.SerializeObject(leafs)));
                 sql.Append("LastModifiedOn = GETDATE() ");
-                sql.Append(string.Format("WHERE ParentId = {0}", (int)parentPersonType));
+                sql.Append(string.Format("WHERE ParentId = {0} AND ParentPersonType = {1}", parentId, (int)parentPersonType));
 
                 AdoProvider.CommitTransaction(sql.ToString());
             }

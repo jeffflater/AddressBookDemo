@@ -18,17 +18,15 @@ namespace AddressBook.Data.Infrastructure
         ///     Save method
         /// </summary>
         /// <param name="entity"></param>
-        public virtual void Save(T entity)
-        {
-        }
+        public abstract void Save(T entity);
+
 
         /// <summary>
         ///     Delete method
         /// </summary>
         /// <param name="id"></param>
-        public virtual void Delete(long id)
-        {
-        }
+        public abstract void Delete(long id);
+        
 
         /// <summary>
         ///     Get multiple models by id

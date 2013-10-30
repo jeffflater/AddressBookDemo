@@ -79,7 +79,7 @@ function EmployeeController() {
             }
         });
     };
-    this.Delte = function (id, callback) {
+    this.Delete = function (id, callback) {
         $.ajax({
             type: 'DELETE',
             contentType: 'application/json',
@@ -128,7 +128,7 @@ function ManagerController() {
             }
         });
     };
-    this.Delte = function (id, callback) {
+    this.Delete = function (id, callback) {
         $.ajax({
             type: 'DELETE',
             contentType: 'application/json',
